@@ -36,8 +36,8 @@ function App() {
 			values.sort();
 			const median = values[Math.floor(values.length / 2)];
 			const stddev = Math.sqrt(values.reduce((sum, i) => sum + (i - median) ** 2, 0) / values.length);
-			setBrightness(median + stddev / 2);
-			setContrast(1 / stddev);
+			setBrightness(parseFloat((median + stddev / 2).toFixed(3)));
+			setContrast(parseFloat((1 / stddev).toFixed(3)));
 		};
 		img.src = srcInput;
 	}, [srcInput, auto]);
@@ -100,7 +100,7 @@ function App() {
 					type="range"
 					min={0}
 					max={5}
-					step={0.01}
+					step={0.001}
 					value={brightness}
 					data-value={brightness}
 					onChange={event => {
@@ -114,7 +114,7 @@ function App() {
 					type="range"
 					min={1}
 					max={10}
-					step={0.01}
+					step={0.001}
 					value={contrast}
 					data-value={contrast}
 					onChange={event => {
