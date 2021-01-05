@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		// "strict": true,
+		// "target": "es2018",
+		"target": "es5",
+		"sourceMap": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"jsx": "preserve",
+		"jsxFactory": "h",
+		"lib": ["DOM", "esnext"],
+		"esModuleInterop": true,
+	}
+}
