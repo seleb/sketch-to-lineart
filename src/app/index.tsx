@@ -2,8 +2,72 @@ import 'preact';
 import { Fragment, h, render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
+import Gl, {
+	Shader,
+	Texture
+} from './gl';
+
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
+const outputCanvas = document.createElement('canvas');
+// create shader
+const gl = new Gl(outputCanvas);
+const shader = new Shader(`
+// default vertex shader
+attribute vec4 position;
+void main() {
+	gl_Position = position;
+}
+`, `
+// default fragment shader
+precision mediump float;
+uniform sampler2D tex0;
+uniform vec2 resolution;
+uniform float brightness;
+uniform float contrast;
+void main() {
+	vec2 coord = gl_FragCoord.xy;
+	vec2 uv = coord.xy / resolution.xy;
+	vec4 col = texture2D(tex0, uv);
+	float v = 1.0 - dot(col.rgb / col.a, vec3(0.299, 0.587, 0.114));
+	v -= brightness;
+	if (v > 0.0) {
+		v = mix(0.0, contrast, v);
+	} else {
+		v = 0.0;
+	}
+	gl_FragColor = vec4(vec3(0.0), v);
+}
+`);
+
+
+// create plane
+const vertices = new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0,
+	1.0, -1.0, 1.0, 1.0, -1.0, 1.0
+]);
+const vertexBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+// cache GL attribute/uniform locations
+const glLocations = {
+	position: gl.getAttribLocation(shader.program, 'position'),
+	tex0: gl.getUniformLocation(shader.program, 'tex0'),
+	resolution: gl.getUniformLocation(shader.program, 'resolution'),
+	brightness: gl.getUniformLocation(shader.program, 'brightness'),
+	contrast: gl.getUniformLocation(shader.program, 'contrast')
+};
+// misc. GL setup
+gl.enableVertexAttribArray(glLocations.position);
+shader.useProgram();
+gl.vertexAttribPointer(glLocations.position, 2, gl.FLOAT, false, 0, 0);
+gl.clearColor(0, 0, 0, 1.0);
+gl.uniform1i(glLocations.tex0, 0);
+const textureSource = new Texture(new Image(), 0, false);
+
+function renderOutput() {
+	gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 2);
+	return outputCanvas.toDataURL();
+}
 
 function App() {
 	const [brightness, setBrightness] = useState(1);
@@ -44,37 +108,28 @@ function App() {
 	}, [srcInput, auto]);
 
 	useEffect(() => {
+		gl.uniform1f(glLocations.brightness, brightness);
+		setSrcOutput(renderOutput());
+	}, [brightness]);
+	useEffect(() => {
+		gl.uniform1f(glLocations.contrast, contrast);
+		setSrcOutput(renderOutput());
+	}, [contrast]);
+	useEffect(() => {
 		const img = new Image();
 		img.onload = () => {
-			const canvas = document.createElement('canvas');
-			canvas.width = img.naturalWidth;
-			canvas.height = img.naturalHeight;
-			if (!canvas || !img || !srcInput) return;
-			const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-			ctx.filter = 'grayscale() invert()';
-			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-			const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
-			for (let y = 0; y < canvas.height; ++y) {
-				for (let x = 0; x < canvas.width; ++x) {
-					const idx = (y * canvas.width + x) * 4;
-					// set alpha to inverse of grayscale, taking brightness/contrast into account
-					let v = d.data[idx] / 255.0;
-					v -= brightness; // center on black
-					if (v > 0) {
-						v = lerp(0, contrast, v);
-					} else {
-						v = 0;
-					}
-					d.data[idx + 3] = v * 255.0;
-					// set rgb to black
-					d.data[idx] = d.data[idx + 1] = d.data[idx + 2] = 0;
-				}
-			}
-			ctx.putImageData(d, 0, 0);
-			setSrcOutput(canvas.toDataURL());
+			outputCanvas.width = img.naturalWidth;
+			outputCanvas.height = img.naturalHeight;
+			gl.viewport(0, 0, outputCanvas.width, outputCanvas.height);
+			gl.uniform2f(glLocations.resolution, outputCanvas.width, outputCanvas.height);
+			// update textures
+			textureSource.source = img;
+			textureSource.update();
+			textureSource.bind();
+			setSrcOutput(renderOutput());
 		};
 		img.src = srcInput;
-	}, [srcInput, brightness, contrast]);
+	}, [srcInput]);
 	return (
 		<Fragment>
 			<header>
@@ -139,10 +194,6 @@ function App() {
 			</main>
 		</Fragment>
 	);
-}
-
-function lerp(from: number, to: number, by: number) {
-	return from + (to - from) * by;
 }
 
 render(<App />, document.body);
