@@ -1,8 +1,7 @@
 {
 	"compilerOptions": {
-		// "strict": true,
-		// "target": "es2018",
-		"target": "es5",
+		"strict": true,
+		"target": "es2018",
 		"sourceMap": true,
 		"module": "esnext",
 		"moduleResolution": "node",

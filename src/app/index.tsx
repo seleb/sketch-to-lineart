@@ -10,11 +10,11 @@ function App() {
 	const [srcOutput, setSrcOutput] = useState('');
 	const [auto, setAuto] = useState(true);
 	const refSourceImg = useRef<HTMLImageElement>();
-	const onChange = useCallback<JSXInternal.DOMAttributes<HTMLInputElement>['onChange']>(event => {
-		if (!event.currentTarget.files[0]) return;
+	const onChange = useCallback<NonNullable<JSXInternal.DOMAttributes<HTMLInputElement>['onChange']>>(event => {
+		if (!event.currentTarget?.files?.[0]) return;
 		const reader = new FileReader();
 		reader.onload = function () {
-			setSrcInput(reader.result.toString());
+			setSrcInput(reader.result?.toString() ?? '');
 		};
 		reader.readAsDataURL(event.currentTarget.files[0]);
 	}, []);
@@ -26,18 +26,18 @@ function App() {
 			const canvas = document.createElement('canvas');
 			canvas.width = img.naturalWidth;
 			canvas.height = img.naturalHeight;
-			const ctx = canvas.getContext('2d');
+			const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 			ctx.filter = 'grayscale() invert()';
 			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 			const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
 			const r = d.data.filter((_, idx) => idx % 4 === 0);
-			// downsample for perf
-			const values = new Array(Math.min(r.length, 1000)).fill(0).map((_, idx, a) => r[Math.floor(idx/a.length*r.length)] / 255.0);
+			// normalize + downsample for perf
+			const values = new Array(Math.min(r.length, 1000)).fill(0).map((_, idx, a) => r[Math.floor((idx / a.length) * r.length)] / 255.0);
 			values.sort();
 			const median = values[Math.floor(values.length / 2)];
 			const stddev = Math.sqrt(values.reduce((sum, i) => sum + (i - median) ** 2, 0) / values.length);
-			setBrightness(median + stddev/2);
-			setContrast(1/stddev);
+			setBrightness(median + stddev / 2);
+			setContrast(1 / stddev);
 		};
 		img.src = srcInput;
 	}, [srcInput, auto]);
@@ -49,7 +49,7 @@ function App() {
 			canvas.width = img.naturalWidth;
 			canvas.height = img.naturalHeight;
 			if (!canvas || !img || !srcInput) return;
-			const ctx = canvas.getContext('2d');
+			const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 			ctx.filter = 'grayscale() invert()';
 			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 			const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
