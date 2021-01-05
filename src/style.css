@@ -45,6 +45,7 @@ input[type="range"]::after {
 	content: attr(data-value);
 	position: absolute;
 	left: 100%;
+	margin-left: 0.5rem;
 }
 
 img {
