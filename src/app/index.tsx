@@ -2,6 +2,8 @@ import 'preact';
 import { Fragment, h, render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
+const inputCanvas = document.createElement('canvas');
+const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 
 function App() {
 	const [brightness, setBrightness] = useState(1);
@@ -23,13 +25,12 @@ function App() {
 		if (!auto || !srcInput) return;
 		const img = new Image();
 		img.onload = () => {
-			const canvas = document.createElement('canvas');
-			canvas.width = img.naturalWidth;
-			canvas.height = img.naturalHeight;
-			const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-			ctx.filter = 'grayscale() invert()';
-			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-			const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
+			inputCanvas.width = img.naturalWidth;
+			inputCanvas.height = img.naturalHeight;
+			inputCtx.clearRect(0, 0, inputCanvas.width, inputCanvas.height);
+			inputCtx.filter = 'grayscale() invert()';
+			inputCtx.drawImage(img, 0, 0, inputCanvas.width, inputCanvas.height);
+			const d = inputCtx.getImageData(0, 0, inputCanvas.width, inputCanvas.height);
 			const r = d.data.filter((_, idx) => idx % 4 === 0);
 			// normalize + downsample for perf
 			const values = new Array(Math.min(r.length, 1000)).fill(0).map((_, idx, a) => r[Math.floor((idx / a.length) * r.length)] / 255.0);
