@@ -29,18 +29,27 @@ h1 {
 
 main {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr auto;
 	grid-gap: 0.5rem 1rem;
-	justify-items: center;
 }
 
 label {
 	text-align: right;
+	align-self: center;
+}
+
+ul li:not(:last-of-type)::after {
+	content: 'or';
 }
 
 
+input[type="file"] {
+	width: 100%;
+}
+
 input[type="range"] {
 	position: relative;
+	margin-right: 4rem;
 }
 
 input[type="range"]::after {
@@ -91,4 +100,10 @@ video {
 
 button {
 	width: 100%;
+}
+
+input, button {
+	font-family: inherit;
+	cursor: pointer;
+	padding: 0.25rem;
 }
