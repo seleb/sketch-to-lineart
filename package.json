@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "rm -rf .cache && rm -rf dist && parcel build index.html --no-source-maps --public-url ./",
-		"postversion": "npm run build"
+    "postversion": "npm run build"
   },
   "author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
   "license": "MIT",
@@ -25,9 +25,12 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-      ["@semantic-release/npm", {
-        "npmPublish": false
-      }],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
       "@semantic-release/github",
       [
         "@semantic-release/git",
