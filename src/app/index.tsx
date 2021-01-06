@@ -2,23 +2,22 @@ import 'preact';
 import { Fragment, h, render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
-import Gl, {
-	Shader,
-	Texture
-} from './gl';
+import Gl, { Shader, Texture } from './gl';
 
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
 // create shader
 const gl = new Gl(outputCanvas);
-const shader = new Shader(`
+const shader = new Shader(
+	`
 // default vertex shader
 attribute vec4 position;
 void main() {
 	gl_Position = position;
 }
-`, `
+`,
+	`
 // default fragment shader
 precision mediump float;
 uniform sampler2D tex0;
@@ -38,13 +37,11 @@ void main() {
 	}
 	gl_FragColor = vec4(vec3(0.0), v);
 }
-`);
-
+`
+);
 
 // create plane
-const vertices = new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0,
-	1.0, -1.0, 1.0, 1.0, -1.0, 1.0
-]);
+const vertices = new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, 1.0]);
 const vertexBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
@@ -54,7 +51,7 @@ const glLocations = {
 	tex0: gl.getUniformLocation(shader.program, 'tex0'),
 	resolution: gl.getUniformLocation(shader.program, 'resolution'),
 	brightness: gl.getUniformLocation(shader.program, 'brightness'),
-	contrast: gl.getUniformLocation(shader.program, 'contrast')
+	contrast: gl.getUniformLocation(shader.program, 'contrast'),
 };
 // misc. GL setup
 gl.enableVertexAttribArray(glLocations.position);
