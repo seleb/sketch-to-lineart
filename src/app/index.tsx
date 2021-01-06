@@ -4,6 +4,7 @@ import 'preact';
 import { Fragment, h, render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
+import { Capture } from './Capture';
 import Gl, { Shader, Texture } from './gl';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
@@ -138,6 +139,14 @@ function App() {
 		setSrcInput('');
 		renderOutput();
 	}, []);
+
+	const [capturing, setCapturing] = useState(false);
+	const beginCapture = useCallback(() => setCapturing(true), []);
+	const onCapture = useCallback((src: string) => {
+		if (src) setSrcInput(src);
+		setCapturing(false);
+	}, []);
+
 	return (
 		<Fragment>
 			<header>
@@ -145,7 +154,16 @@ function App() {
 			</header>
 			<main>
 				<label htmlFor="source-file">source:</label>
-				<input id="source-file" type="file" accept="image/*" onChange={onChange} />
+				<ul>
+					<li>
+						<input id="source-file" type="file" accept="image/*" onChange={onChange} />
+					</li>
+					<li>
+						<button type="button" onClick={beginCapture}>
+							Take photo
+						</button>
+					</li>
+				</ul>
 
 				<label htmlFor="auto">auto:</label>
 				<input
@@ -205,6 +223,7 @@ function App() {
 					</figcaption>
 					<div id="output-img" />
 				</figure>
+				{capturing && <Capture onCapture={onCapture} />}
 			</main>
 		</Fragment>
 	);
