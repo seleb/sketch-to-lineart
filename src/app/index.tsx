@@ -1,7 +1,7 @@
 import 'canvas-toBlob';
 import { saveAs } from 'file-saver';
 import 'preact';
-import { Fragment, h, render } from 'preact';
+import { h, render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 import { Capture } from './Capture';
@@ -161,76 +161,58 @@ function App() {
 	}, []);
 
 	return (
-		<Fragment>
-			<header>
-				<h1>sketch-to-lineart</h1>
-			</header>
-			<main>
-				<label htmlFor="source-file">source:</label>
-				<ul>
-					<li>
-						<input id="source-file" type="file" accept="image/*" onChange={onChange} />
-					</li>
-					<li>
-						<button type="button" onClick={beginCapture}>
-							Take photo
-						</button>
-					</li>
-				</ul>
+		<main>
+			<h1>sketch-to-lineart</h1>
+			<label htmlFor="source-file">source:</label>
+			<ul>
+				<li>
+					<input id="source-file" type="file" accept="image/*" onChange={onChange} />
+				</li>
+				<li>
+					<button type="button" onClick={beginCapture}>
+						Take photo
+					</button>
+				</li>
+			</ul>
 
-				<label htmlFor="auto">auto:</label>
-				<input
-					id="auto"
-					type="checkbox"
-					checked={auto}
-					onChange={event => {
-						setAuto(event.currentTarget.checked);
-					}}
-				/>
+			<label htmlFor="auto">auto:</label>
+			<input
+				id="auto"
+				type="checkbox"
+				checked={auto}
+				onChange={event => {
+					setAuto(event.currentTarget.checked);
+				}}
+			/>
 
-				<label htmlFor="brightness">brightness:</label>
-				<input
-					disabled={auto}
-					id="brightness"
-					type="range"
-					min={0}
-					max={5}
-					step={0.001}
-					value={brightness}
-					data-value={brightness}
-					onChange={event => {
-						setBrightness(parseFloat(event.currentTarget.value));
-					}}
-				/>
-				<label htmlFor="contrast">contrast:</label>
-				<input
-					disabled={auto}
-					id="contrast"
-					type="range"
-					min={1}
-					max={10}
-					step={0.001}
-					value={contrast}
-					data-value={contrast}
-					onChange={event => {
-						setContrast(parseFloat(event.currentTarget.value));
-					}}
-				/>
-
-				<figure>
-					<figcaption>
-						original{' '}
-						<div>
-							<button type="button" onClick={beginCutout}>
-								cutout
-							</button>
-							<button type="button" onClick={clear}>
-								clear
-							</button>
-						</div>
-					</figcaption>
-					<img id="source-img" src={srcInput} ref={refSourceImg} />
-				</figure>
+			<label htmlFor="brightness">brightness:</label>
+			<input
+				disabled={auto}
+				id="brightness"
+				type="range"
+				min={0}
+				max={5}
+				step={0.001}
+				value={brightness}
+				data-value={brightness}
+				onChange={event => {
+					setBrightness(parseFloat(event.currentTarget.value));
+				}}
+			/>
+			<label htmlFor="contrast">contrast:</label>
+			<input
+				disabled={auto}
+				id="contrast"
+				type="range"
+				min={1}
+				max={10}
+				step={0.001}
+				value={contrast}
+				data-value={contrast}
+				onChange={event => {
+					setContrast(parseFloat(event.currentTarget.value));
+				}}
+			/>
 
 				<figure>
 					<figcaption>
@@ -238,13 +220,26 @@ function App() {
 						<button type="button" onClick={save}>
 							save
 						</button>
-					</figcaption>
-					<div id="output-img" />
-				</figure>
-				{capturing && <Capture onCapture={onCapture} />}
-				{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
-			</main>
-		</Fragment>
+						<button type="button" onClick={clear}>
+							clear
+						</button>
+					</div>
+				</figcaption>
+				<img id="source-img" src={srcInput} ref={refSourceImg} />
+			</figure>
+
+			<figure>
+				<figcaption>
+					output{' '}
+					<button type="button" onClick={save}>
+						save
+					</button>
+				</figcaption>
+				<div id="output-img" />
+			</figure>
+			{capturing && <Capture onCapture={onCapture} />}
+			{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
+		</main>
 	);
 }
 
