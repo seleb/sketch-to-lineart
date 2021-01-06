@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/seleb/sketch-to-lineart/compare/v1.0.1...v1.0.2) (2021-01-06)
+
+
+### Bug Fixes
+
+* move output to `docs` to support github pages ([4d39a90](https://github.com/seleb/sketch-to-lineart/commit/4d39a905be0ae93b49944693927e819232a6e46f))
+
 ## [1.0.1](https://github.com/seleb/sketch-to-lineart/compare/v1.0.0...v1.0.1) (2021-01-06)
 
 
