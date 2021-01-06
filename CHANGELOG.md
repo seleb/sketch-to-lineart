@@ -1,3 +1,19 @@
+# [1.3.0](https://github.com/seleb/sketch-to-lineart/compare/v1.2.0...v1.3.0) (2021-01-06)
+
+
+### Bug Fixes
+
+* handle infinite brightness/contrast ([df85c10](https://github.com/seleb/sketch-to-lineart/commit/df85c1045e8be9076bda3e2164300c634ba5fefc))
+* multiple cutout operations ([ea491c1](https://github.com/seleb/sketch-to-lineart/commit/ea491c1605e272e806cd9bc85a527b8bf59ad131))
+* numeric sort ([5989847](https://github.com/seleb/sketch-to-lineart/commit/598984756b12dfa81ed5bb7f1cce792ec6ca9aba))
+
+
+### Features
+
+* darker modal overlay ([38b8f9c](https://github.com/seleb/sketch-to-lineart/commit/38b8f9cc5057446c8858280331191056d90a2e35))
+* improve layout ([128167e](https://github.com/seleb/sketch-to-lineart/commit/128167e56242758d50c3d42b084b6bf83579abf7))
+* trim cutout ([aa3e5aa](https://github.com/seleb/sketch-to-lineart/commit/aa3e5aa18ba6aae71b91176a276361786a17bbb0))
+
 # [1.2.0](https://github.com/seleb/sketch-to-lineart/compare/v1.1.2...v1.2.0) (2021-01-06)
 
 
