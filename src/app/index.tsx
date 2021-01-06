@@ -104,8 +104,8 @@ function App() {
 			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i / 255.0 - median) ** 2, 0) / values.length);
 			let brightness = parseFloat((median + nonstddev / 2).toFixed(3));
 			let contrast = parseFloat((1 / nonstddev).toFixed(3));
-			if (brightness !== brightness) brightness = 0;
-			if (contrast !== contrast) contrast = 1;
+			if (brightness !== brightness || brightness === Infinity || brightness === -Infinity) brightness = 0;
+			if (contrast !== contrast || contrast === Infinity || contrast === -Infinity) contrast = 1;
 			setBrightness(brightness);
 			setContrast(contrast);
 		};
