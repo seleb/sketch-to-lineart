@@ -97,7 +97,7 @@ function App() {
 			const d = inputCtx.getImageData(0, 0, inputCanvas.width, inputCanvas.height);
 			const r = d.data.filter((_, idx) => idx % 4 === 0);
 			// normalize + downsample for perf
-			const values = new Array(Math.min(r.length, 1000)).fill(0).map((_, idx, a) => r[Math.floor((idx / a.length) * r.length)] / 255.0);
+			const values = new Array(Math.min(r.length, 256)).fill(0).map((_, idx, a) => r[Math.floor((idx / a.length) * r.length)] / 255.0);
 			values.sort();
 			const median = values[Math.floor(values.length / 2)];
 			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i - median) ** 2, 0) / values.length);
