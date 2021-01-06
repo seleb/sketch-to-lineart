@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { useCallback, useEffect, useRef } from 'preact/hooks';
+import { sortNumeric } from './utils';
 
 export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (src: string) => void }) {
 	const refCanvas = useRef<HTMLCanvasElement>();
@@ -41,15 +42,23 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 
 			const img = new Image();
 			img.onload = () => {
-				refContext.current.clearRect(0, 0, img.naturalWidth, img.naturalHeight);
+				const sortedX = points.map(([x, y]) => x).sort(sortNumeric);
+				const sortedY = points.map(([x, y]) => y).sort(sortNumeric);
+				const minX = sortedX[0];
+				const minY = sortedY[0];
+				const maxX = sortedX[sortedX.length - 1];
+				const maxY = sortedY[sortedY.length - 1];
+				refCanvas.current.width = maxX - minX;
+				refCanvas.current.height = maxY - minY;
+				refContext.current.clearRect(0, 0, refCanvas.current.width, refCanvas.current.height);
 				refContext.current.save();
 				refContext.current.beginPath();
-				refContext.current.moveTo(points[0][0], points[0][1]);
-				points.slice(1).forEach(([x,y]) => {
-				refContext.current.lineTo(x,y);
-				})
+				refContext.current.moveTo(points[0][0] - minX, points[0][1] - minY);
+				points.slice(1).forEach(([x, y]) => {
+					refContext.current.lineTo(x - minX, y - minY);
+				});
 				refContext.current.clip();
-				refContext.current.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+				refContext.current.drawImage(img, minX, minY, refCanvas.current.width, refCanvas.current.height, 0, 0, refCanvas.current.width, refCanvas.current.height);
 				refContext.current.restore();
 				points = [];
 			};
