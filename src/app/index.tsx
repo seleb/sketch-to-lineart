@@ -66,14 +66,12 @@ const textureSource = new Texture(new Image(), 0, false);
 
 function renderOutput() {
 	gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 2);
-	return outputCanvas.toDataURL();
 }
 
 function App() {
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
 	const [srcInput, setSrcInput] = useState('');
-	const [srcOutput, setSrcOutput] = useState('');
 	const [auto, setAuto] = useState(true);
 	const refSourceImg = useRef<HTMLImageElement>();
 	const onChange = useCallback<NonNullable<JSXInternal.DOMAttributes<HTMLInputElement>['onChange']>>(event => {
@@ -109,11 +107,11 @@ function App() {
 
 	useEffect(() => {
 		gl.uniform1f(glLocations.brightness, brightness);
-		setSrcOutput(renderOutput());
+		renderOutput();
 	}, [brightness]);
 	useEffect(() => {
 		gl.uniform1f(glLocations.contrast, contrast);
-		setSrcOutput(renderOutput());
+		renderOutput();
 	}, [contrast]);
 	useEffect(() => {
 		const img = new Image();
@@ -126,10 +124,13 @@ function App() {
 			textureSource.source = img;
 			textureSource.update();
 			textureSource.bind();
-			setSrcOutput(renderOutput());
+			renderOutput();
 		};
 		img.src = srcInput;
 	}, [srcInput]);
+	useEffect(() => {
+		document.querySelector('#output-img')?.appendChild(outputCanvas);
+	}, []);
 	return (
 		<Fragment>
 			<header>
@@ -184,12 +185,8 @@ function App() {
 				</figure>
 
 				<figure>
-					<figcaption>
-						<a download="lineart.png" href={srcOutput}>
-							output
-						</a>
-					</figcaption>
-					<img id="output-img" src={srcOutput} />
+					<figcaption>output</figcaption>
+					<div id="output-img" />
 				</figure>
 			</main>
 		</Fragment>
