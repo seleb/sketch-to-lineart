@@ -17,7 +17,6 @@ export function Capture({ onCapture }: { onCapture: (src: string) => void }) {
 	return (
 		<div id="capture">
 			<Webcam
-				mirrored
 				audio={false}
 				ref={webcamRef}
 				screenshotFormat="image/jpeg"
