@@ -11,7 +11,7 @@ const outputCanvas = document.createElement('canvas');
 outputCanvas.width = 0;
 outputCanvas.height = 0;
 // create shader
-const gl = new Gl(outputCanvas);
+const gl = Gl(outputCanvas);
 const shader = new Shader(
 	`
 // default vertex shader
