@@ -33,7 +33,7 @@
         "@semantic-release/git",
         {
           "assets": [
-            "dist/*.js",
+            "dist/*",
             "README.md",
             "CHANGELOG.md",
             "package.json",
