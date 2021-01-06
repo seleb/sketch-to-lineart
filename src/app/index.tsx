@@ -1,9 +1,10 @@
+import 'canvas-toBlob';
+import { saveAs } from 'file-saver';
 import 'preact';
 import { Fragment, h, render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 import Gl, { Shader, Texture } from './gl';
-
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
@@ -63,6 +64,11 @@ const textureSource = new Texture(new Image(), 0, false);
 
 function renderOutput() {
 	gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 2);
+}
+
+function save() {
+	renderOutput();
+	outputCanvas.toBlob(saveAs);
 }
 
 function App() {
@@ -180,7 +186,9 @@ function App() {
 				</figure>
 
 				<figure>
-					<figcaption>output</figcaption>
+					<figcaption>
+						output <button onClick={save}>save</button>
+					</figcaption>
 					<div id="output-img" />
 				</figure>
 			</main>
