@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/seleb/sketch-to-lineart/compare/v1.3.1...v1.3.2) (2021-01-06)
+
+
+### Bug Fixes
+
+* header alignment ([5b404fa](https://github.com/seleb/sketch-to-lineart/commit/5b404fac0835bc04aa1691213b7c76f270dcf4a7))
+
 ## [1.3.1](https://github.com/seleb/sketch-to-lineart/compare/v1.3.0...v1.3.1) (2021-01-06)
 
 
