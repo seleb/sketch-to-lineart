@@ -14,14 +14,12 @@ outputCanvas.height = 0;
 const gl = Gl(outputCanvas);
 const shader = new Shader(
 	`
-// default vertex shader
 attribute vec4 position;
 void main() {
 	gl_Position = position;
 }
 `,
 	`
-// default fragment shader
 precision mediump float;
 uniform sampler2D tex0;
 uniform vec2 resolution;
