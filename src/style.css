@@ -48,7 +48,7 @@ input[type="range"]::after {
 	margin-left: 0.5rem;
 }
 
-img {
+img, canvas {
 	border: solid 1px black;
 	max-width: 100%;
 	max-height: 100%;
