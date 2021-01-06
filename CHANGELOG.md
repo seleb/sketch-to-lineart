@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/seleb/sketch-to-lineart/compare/v1.0.0...v1.0.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* copy-pasted icon ([ecb709c](https://github.com/seleb/sketch-to-lineart/commit/ecb709c0238bd250e61bfdf68f57f6e23addb08e))
+* use whole `dist` folder ([3b9c94f](https://github.com/seleb/sketch-to-lineart/commit/3b9c94f13aacad193699b192b335b12317ce428d))
+
 # 1.0.0 (2021-01-06)
 
 
