@@ -8,6 +8,8 @@ import Gl, { Shader, Texture } from './gl';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
+outputCanvas.width = 0;
+outputCanvas.height = 0;
 // create shader
 const gl = new Gl(outputCanvas);
 const shader = new Shader(
