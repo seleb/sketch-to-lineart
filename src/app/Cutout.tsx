@@ -1,4 +1,3 @@
-import inside from 'point-in-polygon';
 import { h } from 'preact';
 import { useCallback, useEffect, useRef } from 'preact/hooks';
 
@@ -42,15 +41,16 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 
 			const img = new Image();
 			img.onload = () => {
+				refContext.current.clearRect(0, 0, img.naturalWidth, img.naturalHeight);
+				refContext.current.save();
+				refContext.current.beginPath();
+				refContext.current.moveTo(points[0][0], points[0][1]);
+				points.slice(1).forEach(([x,y]) => {
+				refContext.current.lineTo(x,y);
+				})
+				refContext.current.clip();
 				refContext.current.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
-				refContext.current.fillStyle = '#FFF';
-				for (let y = 0; y < img.naturalHeight; ++y) {
-					for (let x = 0; x < img.naturalWidth; ++x) {
-						if (!inside([x, y], points)) {
-							refContext.current.fillRect(x, y, 1, 1);
-						}
-					}
-				}
+				refContext.current.restore();
 				points = [];
 			};
 			img.src = srcInput;

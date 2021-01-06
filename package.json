@@ -20,7 +20,6 @@
     "babel-polyfill": "^6.26.0",
     "canvas-toBlob": "^1.0.0",
     "file-saver": "^2.0.5",
-    "point-in-polygon": "^1.0.1",
     "preact": "^10.5.9",
     "reset-css": "^5.0.1"
   },

@@ -98,7 +98,7 @@ function App() {
 			inputCtx.filter = 'grayscale() invert()';
 			inputCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, inputCanvas.width, inputCanvas.height);
 			const d = inputCtx.getImageData(0, 0, inputCanvas.width, inputCanvas.height);
-			const values = d.data.filter((v, idx) => idx % 4 === 0 && v !== 0);
+			const values = d.data.filter((v, idx) => idx % 4 === 0 && d.data[idx+3] !== 0);
 			values.sort();
 			const median = values[Math.floor(values.length / 2)] / 255.0;
 			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i / 255.0 - median) ** 2, 0) / values.length);
