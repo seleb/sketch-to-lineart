@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/seleb/sketch-to-lineart/compare/v1.1.1...v1.1.2) (2021-01-06)
+
+
+### Bug Fixes
+
+* don't mirror camera ([7803da1](https://github.com/seleb/sketch-to-lineart/commit/7803da1d5d67f968c560c5a73d0ff3d91a6929b2))
+
 ## [1.1.1](https://github.com/seleb/sketch-to-lineart/compare/v1.1.0...v1.1.1) (2021-01-06)
 
 
