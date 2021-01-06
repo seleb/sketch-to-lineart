@@ -27,8 +27,8 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 		function getPos(event: PointerEvent): [number, number] {
 			const bounds = (event.currentTarget as HTMLElement).getBoundingClientRect();
 
-			const x = ((event.pageX - bounds.left) / bounds.width) * canvas.width;
-			const y = ((event.pageY - bounds.top) / bounds.height) * canvas.height;
+			const x = ((event.clientX - bounds.left) / bounds.width) * canvas.width;
+			const y = ((event.clientY - bounds.top) / bounds.height) * canvas.height;
 			return [x, y];
 		}
 		function start(event: PointerEvent) {
