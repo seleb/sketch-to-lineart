@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/seleb/sketch-to-lineart/compare/v1.1.2...v1.2.0) (2021-01-06)
+
+
+### Bug Fixes
+
+* cutout taking scroll offset into account ([3beabb4](https://github.com/seleb/sketch-to-lineart/commit/3beabb4a39d71b9d95abe3bb425b2dbde5f7edb8))
+* force screenshot source size ([ee131bc](https://github.com/seleb/sketch-to-lineart/commit/ee131bc28ca30fc671ef20ecbbfb447cc9996d0a))
+* handle NaN brightness/contrast ([e97fd79](https://github.com/seleb/sketch-to-lineart/commit/e97fd79011a7d0e18b3fdf7dfc37c484e9c00780))
+
+
+### Features
+
+* add cutout ([e890fa0](https://github.com/seleb/sketch-to-lineart/commit/e890fa09e9e10a6ad35582ba12f5f4cdf05b8929))
+
 ## [1.1.2](https://github.com/seleb/sketch-to-lineart/compare/v1.1.1...v1.1.2) (2021-01-06)
 
 
