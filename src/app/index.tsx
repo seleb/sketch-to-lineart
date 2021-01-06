@@ -7,6 +7,7 @@ import { JSXInternal } from 'preact/src/jsx';
 import { Capture } from './Capture';
 import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
+import { sortNumeric } from './utils';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
@@ -99,7 +100,7 @@ function App() {
 			inputCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, inputCanvas.width, inputCanvas.height);
 			const d = inputCtx.getImageData(0, 0, inputCanvas.width, inputCanvas.height);
 			const values = d.data.filter((v, idx) => idx % 4 === 0 && d.data[idx+3] !== 0);
-			values.sort();
+			values.sort(sortNumeric);
 			const median = values[Math.floor(values.length / 2)] / 255.0;
 			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i / 255.0 - median) ** 2, 0) / values.length);
 			let brightness = parseFloat((median + nonstddev / 2).toFixed(3));
