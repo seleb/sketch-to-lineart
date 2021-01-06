@@ -102,8 +102,12 @@ function App() {
 			values.sort();
 			const median = values[Math.floor(values.length / 2)] / 255.0;
 			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i / 255.0 - median) ** 2, 0) / values.length);
-			setBrightness(parseFloat((median + nonstddev / 2).toFixed(3)));
-			setContrast(parseFloat((1 / nonstddev).toFixed(3)));
+			let brightness = parseFloat((median + nonstddev / 2).toFixed(3));
+			let contrast = parseFloat((1 / nonstddev).toFixed(3));
+			if (brightness !== brightness) brightness = 0;
+			if (contrast !== contrast) contrast = 1;
+			setBrightness(brightness);
+			setContrast(contrast);
 		};
 		img.src = srcInput;
 	}, [srcInput, auto]);
