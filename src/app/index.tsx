@@ -5,6 +5,7 @@ import { Fragment, h, render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 import { Capture } from './Capture';
+import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
@@ -97,7 +98,7 @@ function App() {
 			inputCtx.filter = 'grayscale() invert()';
 			inputCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, inputCanvas.width, inputCanvas.height);
 			const d = inputCtx.getImageData(0, 0, inputCanvas.width, inputCanvas.height);
-			const values = d.data.filter((_, idx) => idx % 4 === 0);
+			const values = d.data.filter((v, idx) => idx % 4 === 0 && v !== 0);
 			values.sort();
 			const median = values[Math.floor(values.length / 2)] / 255.0;
 			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i / 255.0 - median) ** 2, 0) / values.length);
@@ -145,6 +146,13 @@ function App() {
 	const onCapture = useCallback((src: string) => {
 		if (src) setSrcInput(src);
 		setCapturing(false);
+	}, []);
+
+	const [cutting, setCutting] = useState(false);
+	const beginCutout = useCallback(() => setCutting(true), []);
+	const onCutout = useCallback((src: string) => {
+		if (src) setSrcInput(src);
+		setCutting(false);
 	}, []);
 
 	return (
@@ -207,9 +215,14 @@ function App() {
 				<figure>
 					<figcaption>
 						original{' '}
-						<button type="button" onClick={clear}>
-							clear
-						</button>
+						<div>
+							<button type="button" onClick={beginCutout}>
+								cutout
+							</button>
+							<button type="button" onClick={clear}>
+								clear
+							</button>
+						</div>
 					</figcaption>
 					<img id="source-img" src={srcInput} ref={refSourceImg} />
 				</figure>
@@ -224,6 +237,7 @@ function App() {
 					<div id="output-img" />
 				</figure>
 				{capturing && <Capture onCapture={onCapture} />}
+				{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
 			</main>
 		</Fragment>
 	);
