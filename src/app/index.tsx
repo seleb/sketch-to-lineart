@@ -100,9 +100,9 @@ function App() {
 			const values = new Array(Math.min(r.length, 1000)).fill(0).map((_, idx, a) => r[Math.floor((idx / a.length) * r.length)] / 255.0);
 			values.sort();
 			const median = values[Math.floor(values.length / 2)];
-			const stddev = Math.sqrt(values.reduce((sum, i) => sum + (i - median) ** 2, 0) / values.length);
-			setBrightness(parseFloat((median + stddev / 2).toFixed(3)));
-			setContrast(parseFloat((1 / stddev).toFixed(3)));
+			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i - median) ** 2, 0) / values.length);
+			setBrightness(parseFloat((median + nonstddev / 2).toFixed(3)));
+			setContrast(parseFloat((1 / nonstddev).toFixed(3)));
 		};
 		img.src = srcInput;
 	}, [srcInput, auto]);
