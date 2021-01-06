@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "rm -rf .cache && rm -rf dist && parcel build index.html --no-source-maps --public-url ./",
+    "build": "rm -rf .cache && rm -rf docs && parcel build index.html -d docs --no-source-maps --public-url ./",
     "postversion": "npm run build"
   },
   "author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -36,7 +36,7 @@
         "@semantic-release/git",
         {
           "assets": [
-            "dist/*",
+            "docs/*",
             "README.md",
             "CHANGELOG.md",
             "package.json",

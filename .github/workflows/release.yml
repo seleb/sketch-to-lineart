@@ -15,4 +15,4 @@ jobs:
           CHANNEL: win-linux-mac-stable
           ITCH_GAME: sketch-to-lineart
           ITCH_USER: seansleblanc
-          PACKAGE: dist
+          PACKAGE: docs
