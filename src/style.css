@@ -106,7 +106,8 @@ button {
 	width: 100%;
 }
 
-input, button {
+input,
+button {
 	font-family: inherit;
 	cursor: pointer;
 	padding: 0.25rem;

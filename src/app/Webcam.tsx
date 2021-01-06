@@ -111,7 +111,7 @@ export default class Webcam extends Component<WebcamProps, WebcamState> {
 		const { props } = this;
 
 		if (!hasGetUserMedia()) {
-			props.onUserMediaError("getUserMedia not supported");
+			props.onUserMediaError('getUserMedia not supported');
 			return;
 		}
 
