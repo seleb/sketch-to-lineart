@@ -15,14 +15,8 @@ export function Capture({ onCapture }: { onCapture: (src: string) => void }) {
 		onCapture('');
 	}, []);
 	return (
-		<div id="capture">
-			<Webcam
-				audio={false}
-				ref={webcamRef}
-				screenshotFormat="image/jpeg"
-				onUserMediaError={alert}
-				videoConstraints={videoConstraints}
-			/>
+		<div className="modal">
+			<Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" onUserMediaError={alert} videoConstraints={videoConstraints} />
 			<nav>
 				<button type="button" onClick={capture}>
 					Save

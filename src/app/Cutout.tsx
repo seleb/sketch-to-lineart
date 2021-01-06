@@ -94,7 +94,7 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 		onCutout(srcInput);
 	}, []);
 	return (
-		<div id="capture">
+		<div className="modal">
 			<canvas draggable={false} ref={refCanvas} src={srcInput} />
 			<nav>
 				<button onClick={save}>save</button>
