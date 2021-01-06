@@ -84,18 +84,16 @@ function App() {
 		if (!auto || !srcInput) return;
 		const img = new Image();
 		img.onload = () => {
-			inputCanvas.width = img.naturalWidth;
-			inputCanvas.height = img.naturalHeight;
+			inputCanvas.width = Math.min(img.naturalWidth, 256);
+			inputCanvas.height = Math.min(img.naturalHeight, 256);
 			inputCtx.clearRect(0, 0, inputCanvas.width, inputCanvas.height);
 			inputCtx.filter = 'grayscale() invert()';
-			inputCtx.drawImage(img, 0, 0, inputCanvas.width, inputCanvas.height);
+			inputCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, inputCanvas.width, inputCanvas.height);
 			const d = inputCtx.getImageData(0, 0, inputCanvas.width, inputCanvas.height);
-			const r = d.data.filter((_, idx) => idx % 4 === 0);
-			// normalize + downsample for perf
-			const values = new Array(Math.min(r.length, 256)).fill(0).map((_, idx, a) => r[Math.floor((idx / a.length) * r.length)] / 255.0);
+			const values = d.data.filter((_, idx) => idx % 4 === 0);
 			values.sort();
-			const median = values[Math.floor(values.length / 2)];
-			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i - median) ** 2, 0) / values.length);
+			const median = values[Math.floor(values.length / 2)] / 255.0;
+			const nonstddev = Math.sqrt(values.reduce((sum, i) => sum + (i / 255.0 - median) ** 2, 0) / values.length);
 			setBrightness(parseFloat((median + nonstddev / 2).toFixed(3)));
 			setContrast(parseFloat((1 / nonstddev).toFixed(3)));
 		};
