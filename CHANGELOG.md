@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/seleb/sketch-to-lineart/compare/v1.1.0...v1.1.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* prefer back camera ([9617973](https://github.com/seleb/sketch-to-lineart/commit/9617973e4af0aab90a73e035e15bebe53d500c58))
+
 # [1.1.0](https://github.com/seleb/sketch-to-lineart/compare/v1.0.2...v1.1.0) (2021-01-06)
 
 
