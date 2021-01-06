@@ -50,6 +50,11 @@ input[type="range"]::after {
 	margin-left: 0.5rem;
 }
 
+input:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 img, canvas {
 	border: solid 1px black;
 	max-width: 100%;
