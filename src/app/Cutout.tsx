@@ -1,8 +1,9 @@
 import { h } from 'preact';
-import { useCallback, useEffect, useRef } from 'preact/hooks';
+import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { sortNumeric } from './utils';
 
 export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (src: string) => void }) {
+	const [src, setSrc] = useState(srcInput);
 	const refCanvas = useRef<HTMLCanvasElement>();
 	const refContext = useRef<CanvasRenderingContext2D>();
 	const ref = useRef<HTMLCanvasElement>();
@@ -61,8 +62,9 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 				refContext.current.drawImage(img, minX, minY, refCanvas.current.width, refCanvas.current.height, 0, 0, refCanvas.current.width, refCanvas.current.height);
 				refContext.current.restore();
 				points = [];
+				setSrc(refCanvas.current.toDataURL());
 			};
-			img.src = srcInput;
+			img.src = src;
 		}
 		function move(event: PointerEvent) {
 			const [nextX, nextY] = getPos(event);
@@ -95,13 +97,13 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 			canvas.removeEventListener('pointerup', end);
 			canvas.removeEventListener('pointermove', move);
 		};
-	}, [ref, srcInput]);
+	}, [ref, src]);
 	const save = useCallback(() => {
-		onCutout(refCanvas.current.toDataURL());
-	}, []);
+		onCutout(src);
+	}, [src]);
 	const cancel = useCallback(() => {
 		onCutout(srcInput);
-	}, []);
+	}, [srcInput]);
 	return (
 		<div className="modal">
 			<canvas draggable={false} ref={refCanvas} src={srcInput} />
