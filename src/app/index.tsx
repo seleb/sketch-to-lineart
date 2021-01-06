@@ -187,7 +187,7 @@ function App() {
 
 				<figure>
 					<figcaption>
-						output <button onClick={save}>save</button>
+						output <button type="button" onClick={save}>save</button>
 					</figcaption>
 					<div id="output-img" />
 				</figure>
