@@ -87,7 +87,7 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		if (!auto || !srcInput) return;
+		if (!auto) return;
 		const img = new Image();
 		img.onload = () => {
 			inputCanvas.width = Math.min(img.naturalWidth, 256);
@@ -127,10 +127,16 @@ function App() {
 			textureSource.bind();
 			renderOutput();
 		};
+		img.onerror = img.onload;
 		img.src = srcInput;
 	}, [srcInput]);
 	useEffect(() => {
 		document.querySelector('#output-img')?.appendChild(outputCanvas);
+	}, []);
+
+	const clear = useCallback(() => {
+		setSrcInput('');
+		renderOutput();
 	}, []);
 	return (
 		<Fragment>
@@ -181,13 +187,21 @@ function App() {
 				/>
 
 				<figure>
-					<figcaption>original</figcaption>
+					<figcaption>
+						original{' '}
+						<button type="button" onClick={clear}>
+							clear
+						</button>
+					</figcaption>
 					<img id="source-img" src={srcInput} ref={refSourceImg} />
 				</figure>
 
 				<figure>
 					<figcaption>
-						output <button type="button" onClick={save}>save</button>
+						output{' '}
+						<button type="button" onClick={save}>
+							save
+						</button>
 					</figcaption>
 					<div id="output-img" />
 				</figure>
