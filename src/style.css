@@ -4,6 +4,8 @@ body {
 	margin: 0;
 
 	font-family: 'Courier New', Courier, monospace;
+	background: #fff;
+	color: #000;
 }
 
 * {
