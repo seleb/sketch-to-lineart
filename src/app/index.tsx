@@ -7,7 +7,7 @@ import { JSXInternal } from 'preact/src/jsx';
 import { Capture } from './Capture';
 import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
-import { hexToRgb, rgbToLuma, sortNumeric } from './utils';
+import { hexToRgb, rgbToLuma, sortNumeric, useCheckbox, useRange } from './utils';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
@@ -183,6 +183,14 @@ function App() {
 		setCutting(false);
 	}, []);
 
+	const onToggleAuto = useCheckbox(setAuto);
+	const onChangeBrightness = useRange(setBrightness);
+	const onChangeContrast = useRange(setContrast);
+	const onToggleThreshold = useCheckbox(setUseThreshold);
+	const onChangeThreshold = useRange(setThreshold);
+	const onChangeFill = useCallback((event: JSXInternal.TargetedEvent<HTMLInputElement, Event>) => {
+		setFill(event.currentTarget.value);
+	}, []);
 	return (
 		<main>
 			<h1>sketch-to-lineart</h1>
@@ -205,9 +213,7 @@ function App() {
 				id="auto"
 				type="checkbox"
 				checked={auto}
-				onChange={event => {
-					setAuto(event.currentTarget.checked);
-				}}
+				onChange={onToggleAuto}
 			/>
 			{!auto && (
 				<>
@@ -221,9 +227,7 @@ function App() {
 						step={0.001}
 						value={brightness}
 						data-value={brightness}
-						onChange={event => {
-							setBrightness(parseFloat(event.currentTarget.value));
-						}}
+						onChange={onChangeBrightness}
 					/>
 					<label htmlFor="contrast">contrast:</label>
 					<input
@@ -235,9 +239,7 @@ function App() {
 						step={0.001}
 						value={contrast}
 						data-value={contrast}
-						onChange={event => {
-							setContrast(parseFloat(event.currentTarget.value));
-						}}
+						onChange={onChangeContrast}
 					/>
 				</>
 			)}
@@ -249,9 +251,7 @@ function App() {
 				id="use-threshold"
 				type="checkbox"
 				checked={useThreshold}
-				onChange={event => {
-					setUseThreshold(event.currentTarget.checked);
-				}}
+				onChange={onToggleThreshold}
 			/>
 			{useThreshold && (
 				<>
@@ -265,9 +265,7 @@ function App() {
 						step={0.001}
 						value={threshold}
 						data-value={threshold}
-						onChange={event => {
-							setThreshold(parseFloat(event.currentTarget.value));
-						}}
+						onChange={onChangeThreshold}
 					/>
 				</>
 			)}
@@ -279,9 +277,7 @@ function App() {
 				id="fill"
 				type="color"
 				value={fill}
-				onChange={event => {
-					setFill(event.currentTarget.value);
-				}}
+				onChange={onChangeFill}
 			/>
 
 			<hr />
