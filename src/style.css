@@ -123,6 +123,6 @@ button {
 	padding: 0;
 }
 
-.invert {
+.invert canvas {
 	background: #000;
 }
