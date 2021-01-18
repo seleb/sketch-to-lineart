@@ -1,3 +1,23 @@
+# [1.4.0](https://github.com/seleb/sketch-to-lineart/compare/v1.3.2...v1.4.0) (2021-01-18)
+
+
+### Bug Fixes
+
+* apply invert only to canvas, not container ([ee700ec](https://github.com/seleb/sketch-to-lineart/commit/ee700ecc94b08dea273de2d748773cc0994f95b3))
+* disable buttons when no source set ([5e441c9](https://github.com/seleb/sketch-to-lineart/commit/5e441c9904076db8d68abf13f56e0e640e9c90a4))
+* file input clears when "clear" is pressed ([68a6378](https://github.com/seleb/sketch-to-lineart/commit/68a6378ecfe6eef2c3d94304ff2eae27b2540dce))
+* hr margin ([f7b3981](https://github.com/seleb/sketch-to-lineart/commit/f7b39818b5276e2c49e86c5775824df1ed931a5a))
+
+
+### Features
+
+* add optional threshold ([dbddbbe](https://github.com/seleb/sketch-to-lineart/commit/dbddbbed7676b0cbc0757b996880f024fc1b2153))
+* fill colour ([bde802f](https://github.com/seleb/sketch-to-lineart/commit/bde802f820cd679d2bfc45f657f010b2a5a205d5))
+* invert preview background colour for contrast ([3ce5afd](https://github.com/seleb/sketch-to-lineart/commit/3ce5afde99a3476e867c1eb0d1b393e522cc321f))
+* update immediately while dragging sliders ([61b764d](https://github.com/seleb/sketch-to-lineart/commit/61b764da4fd37ab2b50ed3fa076caef7aa6d3cb1))
+* update immediately while setting colour ([fd5abaf](https://github.com/seleb/sketch-to-lineart/commit/fd5abaf6b049a8b96ac873c65b9dffc18fa9297a))
+* update layout ([26cb9e1](https://github.com/seleb/sketch-to-lineart/commit/26cb9e16cc21c7d6c8b6117d7976face291bb35f))
+
 ## [1.3.2](https://github.com/seleb/sketch-to-lineart/compare/v1.3.1...v1.3.2) (2021-01-06)
 
 
