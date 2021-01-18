@@ -209,76 +209,31 @@ function App() {
 			<hr />
 
 			<label htmlFor="auto">auto:</label>
-			<input
-				id="auto"
-				type="checkbox"
-				checked={auto}
-				onChange={onToggleAuto}
-			/>
+			<input id="auto" type="checkbox" checked={auto} onChange={onToggleAuto} />
 			{!auto && (
 				<>
 					<label htmlFor="brightness">brightness:</label>
-					<input
-						disabled={auto}
-						id="brightness"
-						type="range"
-						min={0}
-						max={5}
-						step={0.001}
-						value={brightness}
-						data-value={brightness}
-						onInput={onChangeBrightness}
-					/>
+					<input disabled={auto} id="brightness" type="range" min={0} max={5} step={0.001} value={brightness} data-value={brightness} onInput={onChangeBrightness} />
 					<label htmlFor="contrast">contrast:</label>
-					<input
-						disabled={auto}
-						id="contrast"
-						type="range"
-						min={1}
-						max={10}
-						step={0.001}
-						value={contrast}
-						data-value={contrast}
-						onInput={onChangeContrast}
-					/>
+					<input disabled={auto} id="contrast" type="range" min={1} max={10} step={0.001} value={contrast} data-value={contrast} onInput={onChangeContrast} />
 				</>
 			)}
 
 			<hr />
 
 			<label htmlFor="use-threshold">use&nbsp;threshold:</label>
-			<input
-				id="use-threshold"
-				type="checkbox"
-				checked={useThreshold}
-				onChange={onToggleThreshold}
-			/>
+			<input id="use-threshold" type="checkbox" checked={useThreshold} onChange={onToggleThreshold} />
 			{useThreshold && (
 				<>
 					<label htmlFor="threshold">threshold:</label>
-					<input
-						disabled={!useThreshold}
-						id="threshold"
-						type="range"
-						min={0}
-						max={1}
-						step={0.001}
-						value={threshold}
-						data-value={threshold}
-						onInput={onChangeThreshold}
-					/>
+					<input disabled={!useThreshold} id="threshold" type="range" min={0} max={1} step={0.001} value={threshold} data-value={threshold} onInput={onChangeThreshold} />
 				</>
 			)}
 
 			<hr />
 
 			<label htmlFor="fill">fill:</label>
-			<input
-				id="fill"
-				type="color"
-				value={fill}
-				onChange={onChangeFill}
-			/>
+			<input id="fill" type="color" value={fill} onChange={onChangeFill} />
 
 			<hr />
 
