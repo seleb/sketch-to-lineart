@@ -83,7 +83,7 @@ function App() {
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
 	const [srcInput, setSrcInput] = useState('');
-	const [fill, setFill] = useState('0x000000');
+	const [fill, setFill] = useState('#000000');
 	const [auto, setAuto] = useState(true);
 	const refSourceImg = useRef<HTMLImageElement>();
 	const onChange = useCallback<NonNullable<JSXInternal.DOMAttributes<HTMLInputElement>['onChange']>>(event => {
