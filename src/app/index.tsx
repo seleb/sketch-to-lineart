@@ -31,6 +31,7 @@ uniform sampler2D tex0;
 uniform vec2 resolution;
 uniform float brightness;
 uniform float contrast;
+uniform float threshold;
 uniform vec3 fill;
 void main() {
 	vec2 coord = gl_FragCoord.xy;
@@ -42,6 +43,10 @@ void main() {
 		v = mix(0.0, contrast, v);
 	} else {
 		v = 0.0;
+	}
+	v = clamp(v, 0.0, 1.0);
+	if (threshold <= 1.0) {
+		v = step(threshold, v);
 	}
 	gl_FragColor = vec4(fill, v);
 }
@@ -60,6 +65,7 @@ const glLocations = {
 	resolution: gl.getUniformLocation(shader.program, 'resolution'),
 	brightness: gl.getUniformLocation(shader.program, 'brightness'),
 	contrast: gl.getUniformLocation(shader.program, 'contrast'),
+	threshold: gl.getUniformLocation(shader.program, 'threshold'),
 	fill: gl.getUniformLocation(shader.program, 'fill'),
 };
 // misc. GL setup
@@ -82,6 +88,8 @@ function save() {
 function App() {
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
+	const [useThreshold, setUseThreshold] = useState(false);
+	const [threshold, setThreshold] = useState(0.5);
 	const [srcInput, setSrcInput] = useState('');
 	const [fill, setFill] = useState('#000000');
 	const [auto, setAuto] = useState(true);
@@ -127,6 +135,10 @@ function App() {
 		gl.uniform1f(glLocations.contrast, contrast);
 		renderOutput();
 	}, [contrast]);
+	useEffect(() => {
+		gl.uniform1f(glLocations.threshold, useThreshold ? threshold : Infinity);
+		renderOutput();
+	}, [threshold, useThreshold]);
 	useEffect(() => {
 		const rgb = hexToRgb(fill);
 		gl.uniform3f(glLocations.fill, rgb[0], rgb[1], rgb[2]);
@@ -196,6 +208,16 @@ function App() {
 				}}
 			/>
 
+			<label htmlFor="use-threshold">use&nbsp;threshold:</label>
+			<input
+				id="use-threshold"
+				type="checkbox"
+				checked={useThreshold}
+				onChange={event => {
+					setUseThreshold(event.currentTarget.checked);
+				}}
+			/>
+
 			<label htmlFor="brightness">brightness:</label>
 			<input
 				disabled={auto}
@@ -224,6 +246,24 @@ function App() {
 					setContrast(parseFloat(event.currentTarget.value));
 				}}
 			/>
+			{useThreshold && (
+				<>
+					<label htmlFor="threshold">threshold:</label>
+					<input
+						disabled={!useThreshold}
+						id="threshold"
+						type="range"
+						min={0}
+						max={1}
+						step={0.001}
+						value={threshold}
+						data-value={threshold}
+						onChange={event => {
+							setThreshold(parseFloat(event.currentTarget.value));
+						}}
+					/>
+				</>
+			)}
 			<label htmlFor="fill">fill:</label>
 			<input
 				id="fill"
