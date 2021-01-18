@@ -198,6 +198,8 @@ function App() {
 				</li>
 			</ul>
 
+			<hr />
+
 			<label htmlFor="auto">auto:</label>
 			<input
 				id="auto"
@@ -207,6 +209,40 @@ function App() {
 					setAuto(event.currentTarget.checked);
 				}}
 			/>
+			{!auto && (
+				<>
+					<label htmlFor="brightness">brightness:</label>
+					<input
+						disabled={auto}
+						id="brightness"
+						type="range"
+						min={0}
+						max={5}
+						step={0.001}
+						value={brightness}
+						data-value={brightness}
+						onChange={event => {
+							setBrightness(parseFloat(event.currentTarget.value));
+						}}
+					/>
+					<label htmlFor="contrast">contrast:</label>
+					<input
+						disabled={auto}
+						id="contrast"
+						type="range"
+						min={1}
+						max={10}
+						step={0.001}
+						value={contrast}
+						data-value={contrast}
+						onChange={event => {
+							setContrast(parseFloat(event.currentTarget.value));
+						}}
+					/>
+				</>
+			)}
+
+			<hr />
 
 			<label htmlFor="use-threshold">use&nbsp;threshold:</label>
 			<input
@@ -215,35 +251,6 @@ function App() {
 				checked={useThreshold}
 				onChange={event => {
 					setUseThreshold(event.currentTarget.checked);
-				}}
-			/>
-
-			<label htmlFor="brightness">brightness:</label>
-			<input
-				disabled={auto}
-				id="brightness"
-				type="range"
-				min={0}
-				max={5}
-				step={0.001}
-				value={brightness}
-				data-value={brightness}
-				onChange={event => {
-					setBrightness(parseFloat(event.currentTarget.value));
-				}}
-			/>
-			<label htmlFor="contrast">contrast:</label>
-			<input
-				disabled={auto}
-				id="contrast"
-				type="range"
-				min={1}
-				max={10}
-				step={0.001}
-				value={contrast}
-				data-value={contrast}
-				onChange={event => {
-					setContrast(parseFloat(event.currentTarget.value));
 				}}
 			/>
 			{useThreshold && (
@@ -264,6 +271,9 @@ function App() {
 					/>
 				</>
 			)}
+
+			<hr />
+
 			<label htmlFor="fill">fill:</label>
 			<input
 				id="fill"
@@ -273,6 +283,8 @@ function App() {
 					setFill(event.currentTarget.value);
 				}}
 			/>
+
+			<hr />
 
 			<figure>
 				<figcaption>
