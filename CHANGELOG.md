@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/seleb/sketch-to-lineart/compare/v1.4.0...v1.4.1) (2021-01-18)
+
+
+### Bug Fixes
+
+* **a11y:** title text on checkboxes ([57f79eb](https://github.com/seleb/sketch-to-lineart/commit/57f79eb0e3b3b857da93e258379946ddea8f19b2))
+* more subtle/consistent `hr`s ([77c95a3](https://github.com/seleb/sketch-to-lineart/commit/77c95a3463b18832d72aa35d95b00aa79635f7d9))
+
 # [1.4.0](https://github.com/seleb/sketch-to-lineart/compare/v1.3.2...v1.4.0) (2021-01-18)
 
 
