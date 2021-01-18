@@ -227,7 +227,7 @@ function App() {
 						step={0.001}
 						value={brightness}
 						data-value={brightness}
-						onChange={onChangeBrightness}
+						onInput={onChangeBrightness}
 					/>
 					<label htmlFor="contrast">contrast:</label>
 					<input
@@ -239,7 +239,7 @@ function App() {
 						step={0.001}
 						value={contrast}
 						data-value={contrast}
-						onChange={onChangeContrast}
+						onInput={onChangeContrast}
 					/>
 				</>
 			)}
@@ -265,7 +265,7 @@ function App() {
 						step={0.001}
 						value={threshold}
 						data-value={threshold}
-						onChange={onChangeThreshold}
+						onInput={onChangeThreshold}
 					/>
 				</>
 			)}
