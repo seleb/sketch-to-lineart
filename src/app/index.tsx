@@ -241,10 +241,10 @@ function App() {
 				<figcaption>
 					original{' '}
 					<div>
-						<button type="button" onClick={beginCutout}>
+						<button disabled={!srcInput} type="button" onClick={beginCutout}>
 							cutout
 						</button>
-						<button type="button" onClick={clear}>
+						<button disabled={!srcInput} type="button" onClick={clear}>
 							clear
 						</button>
 					</div>
