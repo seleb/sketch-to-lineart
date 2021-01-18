@@ -7,7 +7,7 @@ import { JSXInternal } from 'preact/src/jsx';
 import { Capture } from './Capture';
 import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
-import { sortNumeric } from './utils';
+import { hexToRgb, sortNumeric } from './utils';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
@@ -28,6 +28,7 @@ uniform sampler2D tex0;
 uniform vec2 resolution;
 uniform float brightness;
 uniform float contrast;
+uniform vec3 fill;
 void main() {
 	vec2 coord = gl_FragCoord.xy;
 	vec2 uv = coord.xy / resolution.xy;
@@ -39,7 +40,7 @@ void main() {
 	} else {
 		v = 0.0;
 	}
-	gl_FragColor = vec4(vec3(0.0), v);
+	gl_FragColor = vec4(fill, v);
 }
 `
 );
@@ -56,6 +57,7 @@ const glLocations = {
 	resolution: gl.getUniformLocation(shader.program, 'resolution'),
 	brightness: gl.getUniformLocation(shader.program, 'brightness'),
 	contrast: gl.getUniformLocation(shader.program, 'contrast'),
+	fill: gl.getUniformLocation(shader.program, 'fill'),
 };
 // misc. GL setup
 gl.enableVertexAttribArray(glLocations.position);
@@ -78,6 +80,7 @@ function App() {
 	const [brightness, setBrightness] = useState(1);
 	const [contrast, setContrast] = useState(1);
 	const [srcInput, setSrcInput] = useState('');
+	const [fill, setFill] = useState('0x000000');
 	const [auto, setAuto] = useState(true);
 	const refSourceImg = useRef<HTMLImageElement>();
 	const onChange = useCallback<NonNullable<JSXInternal.DOMAttributes<HTMLInputElement>['onChange']>>(event => {
@@ -121,6 +124,11 @@ function App() {
 		gl.uniform1f(glLocations.contrast, contrast);
 		renderOutput();
 	}, [contrast]);
+	useEffect(() => {
+		const rgb = hexToRgb(fill);
+		gl.uniform3f(glLocations.fill, rgb[0], rgb[1], rgb[2]);
+		renderOutput();
+	}, [fill]);
 	useEffect(() => {
 		const img = new Image();
 		img.onerror = img.onload = () => {
@@ -210,6 +218,15 @@ function App() {
 				data-value={contrast}
 				onChange={event => {
 					setContrast(parseFloat(event.currentTarget.value));
+				}}
+			/>
+			<label htmlFor="fill">fill:</label>
+			<input
+				id="fill"
+				type="color"
+				value={fill}
+				onChange={event => {
+					setFill(event.currentTarget.value);
 				}}
 			/>
 

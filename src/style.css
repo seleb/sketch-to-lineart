@@ -113,3 +113,8 @@ button {
 	cursor: pointer;
 	padding: 0.25rem;
 }
+
+#fill {
+	width: auto;
+	padding: 0;
+}
