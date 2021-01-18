@@ -154,6 +154,7 @@ function App() {
 	const clear = useCallback(() => {
 		setSrcInput('');
 		renderOutput();
+		(document.querySelector('#source-file') as HTMLInputElement).value = '';
 	}, []);
 
 	const [capturing, setCapturing] = useState(false);
