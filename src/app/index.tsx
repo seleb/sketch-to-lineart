@@ -123,7 +123,7 @@ function App() {
 	}, [contrast]);
 	useEffect(() => {
 		const img = new Image();
-		img.onload = () => {
+		img.onerror = img.onload = () => {
 			outputCanvas.width = img.naturalWidth;
 			outputCanvas.height = img.naturalHeight;
 			gl.viewport(0, 0, outputCanvas.width, outputCanvas.height);
@@ -134,7 +134,6 @@ function App() {
 			textureSource.bind();
 			renderOutput();
 		};
-		img.onerror = img.onload;
 		img.src = srcInput;
 	}, [srcInput]);
 	useEffect(() => {
