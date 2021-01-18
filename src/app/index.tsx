@@ -208,8 +208,10 @@ function App() {
 
 			<hr />
 
-			<label htmlFor="auto">auto:</label>
-			<input id="auto" type="checkbox" checked={auto} onChange={onToggleAuto} />
+			<label htmlFor="auto" title="Automatically set brightness/contrast">
+				auto:
+			</label>
+			<input id="auto" title="Automatically set brightness/contrast" type="checkbox" checked={auto} onChange={onToggleAuto} />
 			{!auto && (
 				<>
 					<label htmlFor="brightness">brightness:</label>
@@ -221,8 +223,10 @@ function App() {
 
 			<hr />
 
-			<label htmlFor="use-threshold">use&nbsp;threshold:</label>
-			<input id="use-threshold" type="checkbox" checked={useThreshold} onChange={onToggleThreshold} />
+			<label htmlFor="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels">
+				use&nbsp;threshold:
+			</label>
+			<input id="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels" type="checkbox" checked={useThreshold} onChange={onToggleThreshold} />
 			{useThreshold && (
 				<>
 					<label htmlFor="threshold">threshold:</label>
