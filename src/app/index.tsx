@@ -233,7 +233,7 @@ function App() {
 			<hr />
 
 			<label htmlFor="fill">fill:</label>
-			<input id="fill" type="color" value={fill} onChange={onChangeFill} />
+			<input id="fill" type="color" value={fill} onInput={onChangeFill} />
 
 			<hr />
 
