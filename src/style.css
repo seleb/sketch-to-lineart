@@ -36,6 +36,8 @@ hr {
 	grid-column: span 2;
 	width: 100%;
 	margin: 0;
+	border: 0;
+	border-top: solid 1px #BBB;
 }
 
 h1 {
