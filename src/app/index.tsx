@@ -1,7 +1,7 @@
 import 'canvas-toBlob';
 import { saveAs } from 'file-saver';
 import 'preact';
-import { h, render } from 'preact';
+import { render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 import { Capture } from './Capture';

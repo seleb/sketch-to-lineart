@@ -5,8 +5,8 @@
 		"sourceMap": true,
 		"module": "esnext",
 		"moduleResolution": "node",
-		"jsx": "preserve",
-		"jsxFactory": "h",
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact",
 		"lib": ["DOM", "esnext"],
 		"esModuleInterop": true,
 	}
