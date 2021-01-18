@@ -1,9 +1,9 @@
 // returns the gl context
 // if one doesn't exist,
 // creates it then returns it
-export default function Gl(canvas) {
+export default function Gl(canvas, options) {
 	if (!Gl.context) {
-		Gl.context = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+		Gl.context = canvas.getContext('webgl', options) || canvas.getContext('experimental-webgl', options);
 		if (!Gl.context) {
 			throw 'No WebGL support';
 		}

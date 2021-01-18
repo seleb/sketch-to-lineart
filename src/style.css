@@ -118,3 +118,7 @@ button {
 	width: auto;
 	padding: 0;
 }
+
+.invert {
+	background: #000;
+}

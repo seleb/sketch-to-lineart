@@ -7,14 +7,17 @@ import { JSXInternal } from 'preact/src/jsx';
 import { Capture } from './Capture';
 import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
-import { hexToRgb, sortNumeric } from './utils';
+import { hexToRgb, rgbToLuma, sortNumeric } from './utils';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
 outputCanvas.width = 0;
 outputCanvas.height = 0;
 // create shader
-const gl = Gl(outputCanvas);
+const gl = Gl(outputCanvas, {
+	alpha: true,
+	premultipliedAlpha: false,
+});
 const shader = new Shader(
 	`
 attribute vec4 position;
@@ -63,7 +66,7 @@ const glLocations = {
 gl.enableVertexAttribArray(glLocations.position);
 shader.useProgram();
 gl.vertexAttribPointer(glLocations.position, 2, gl.FLOAT, false, 0, 0);
-gl.clearColor(0, 0, 0, 1.0);
+gl.clearColor(0, 0, 0, 0.0);
 gl.uniform1i(glLocations.tex0, 0);
 const textureSource = new Texture(new Image(), 0, false);
 
@@ -252,7 +255,7 @@ function App() {
 						save
 					</button>
 				</figcaption>
-				<div id="output-img" />
+				<div id="output-img" className={rgbToLuma.apply(undefined, hexToRgb(fill)) > 0.5 ? 'invert' : ''} />
 			</figure>
 			{capturing && <Capture onCapture={onCapture} />}
 			{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
