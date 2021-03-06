@@ -20,7 +20,7 @@
     "babel-polyfill": "^6.26.0",
     "canvas-toBlob": "^1.0.0",
     "file-saver": "^2.0.5",
-    "preact": "^10.5.9",
+    "preact": "^10.5.12",
     "reset-css": "^5.0.1"
   },
   "release": {
