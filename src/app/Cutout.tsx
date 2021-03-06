@@ -1,5 +1,5 @@
-import { h } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
+import { Modal } from './Modal';
 import { sortNumeric } from './utils';
 
 export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (src: string) => void }) {
@@ -105,12 +105,12 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 		onCutout(srcInput);
 	}, [srcInput]);
 	return (
-		<div className="modal">
+		<Modal>
 			<canvas draggable={false} ref={refCanvas} src={srcInput} />
 			<nav>
 				<button onClick={save}>save</button>
 				<button onClick={cancel}>cancel</button>
 			</nav>
-		</div>
+		</Modal>
 	);
 }

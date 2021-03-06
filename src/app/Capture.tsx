@@ -1,5 +1,5 @@
-import { h } from 'preact';
 import { useCallback, useRef } from 'preact/hooks';
+import { Modal } from './Modal';
 import Webcam from './Webcam';
 
 const videoConstraints = {
@@ -15,7 +15,7 @@ export function Capture({ onCapture }: { onCapture: (src: string) => void }) {
 		onCapture('');
 	}, []);
 	return (
-		<div className="modal">
+		<Modal>
 			<Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" onUserMediaError={alert} videoConstraints={videoConstraints} forceScreenshotSourceSize />
 			<nav>
 				<button type="button" onClick={capture}>
@@ -25,6 +25,6 @@ export function Capture({ onCapture }: { onCapture: (src: string) => void }) {
 					Cancel
 				</button>
 			</nav>
-		</div>
+		</Modal>
 	);
 }
