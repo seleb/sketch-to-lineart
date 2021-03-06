@@ -270,7 +270,7 @@ function App() {
 				{capturing && <Capture onCapture={onCapture} />}
 				{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
 			</main>
-			<footer>{pkg.version}</footer>
+			<footer>v{pkg.version}</footer>
 		</>
 	);
 }
