@@ -1,3 +1,32 @@
+# [1.5.0](https://github.com/seleb/sketch-to-lineart/compare/v1.4.1...v1.5.0) (2021-03-06)
+
+
+### Bug Fixes
+
+* `lang` placed on `head` instead of `html` ([61f9965](https://github.com/seleb/sketch-to-lineart/commit/61f9965b8503a65c65077a435c94e86f1cc6324a))
+* add `lang` to `html` ([0c3a266](https://github.com/seleb/sketch-to-lineart/commit/0c3a2662d5aa50f01e963040c506c88db24267b9))
+* add alt text to source image ([39aa03f](https://github.com/seleb/sketch-to-lineart/commit/39aa03f33a8305fc754f5c8b9efc266044bbd94a))
+* add description meta ([b60613d](https://github.com/seleb/sketch-to-lineart/commit/b60613da874535c4eefc61c78eeb9a720b2dbccb))
+* add opengraph metadata ([2eaf350](https://github.com/seleb/sketch-to-lineart/commit/2eaf350a3e1cf9ea373a3ab0b3dbeebcbdf5ed99))
+* add robots meta ([872b2e8](https://github.com/seleb/sketch-to-lineart/commit/872b2e88dcdada733b844f519ba074792e15fac6))
+* add structured metadata ([950ee8e](https://github.com/seleb/sketch-to-lineart/commit/950ee8ecba39aadbf1c149206818a453a9f60730))
+* add viewport meta ([52e1ec6](https://github.com/seleb/sketch-to-lineart/commit/52e1ec6dbd943c109088af76cc5b3ca216673197))
+* allow buttons to wrap in modal nav ([47e7b59](https://github.com/seleb/sketch-to-lineart/commit/47e7b59a3bbb12828323926348ceb476b03e86d9))
+* better header style on mobile ([96ec723](https://github.com/seleb/sketch-to-lineart/commit/96ec72399f41181d6c9cf051d5f371de38d63a53))
+* hide source image when no source set ([ac958fe](https://github.com/seleb/sketch-to-lineart/commit/ac958fecd6ac6242498bfa0af676611fb09c1bf6))
+* include `dialog-polyfill` for non-chrome ([7589fe2](https://github.com/seleb/sketch-to-lineart/commit/7589fe2bddf04d5736d18c747f693ac42319ce9a))
+* only close modal if it has focus ([e166f43](https://github.com/seleb/sketch-to-lineart/commit/e166f430734c524867b0f3e77c3b26ba85ceb372))
+* render modals into `body` ([ba3a309](https://github.com/seleb/sketch-to-lineart/commit/ba3a309a04c5b6b98d027877a16bf865bed6e477))
+* update preact ([ed372ba](https://github.com/seleb/sketch-to-lineart/commit/ed372ba98ddad050c1512c920eb148b0380f2f05))
+* use native `dialog` element ([7fcc48e](https://github.com/seleb/sketch-to-lineart/commit/7fcc48e806816f4faca6a40ca0c0fc824de8e456))
+
+
+### Features
+
+* close modals with escape key ([42c4507](https://github.com/seleb/sketch-to-lineart/commit/42c450774a0479f2e81a391fc2bbb0c32fe1f93c))
+* include aria attributes in modals ([8146d71](https://github.com/seleb/sketch-to-lineart/commit/8146d711dd9703489cee961b2fd7e752432bc21f))
+* include labels for modals ([8890b14](https://github.com/seleb/sketch-to-lineart/commit/8890b14e0c52a544d7a2226030cdab1a00695fbe))
+
 ## [1.4.1](https://github.com/seleb/sketch-to-lineart/compare/v1.4.0...v1.4.1) (2021-01-18)
 
 
