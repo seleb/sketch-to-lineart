@@ -1,3 +1,4 @@
+import dialogPolyfill from 'dialog-polyfill';
 import { useEffect, useRef } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 
@@ -6,6 +7,7 @@ export function Modal({ children, close, ...props }: JSXInternal.HTMLAttributes<
 	useEffect(() => {
 		const dialog = ref.current;
 		if (!dialog) return;
+		dialogPolyfill.registerDialog(dialog);
 		dialog.showModal();
 		dialog.addEventListener('close', close);
 	}, [close]);
