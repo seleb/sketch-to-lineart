@@ -2,17 +2,17 @@
 	"short_name": "sketch-to-lineart",
 	"name": "sketch-to-lineart",
 	"icons": [{
-		"src": "./icon.png",
+		"src": "./src/icon.png",
 		"type": "image/png",
 		"sizes": "32x32",
 		"purpose": "maskable"
 	}, {
-		"src": "./icon_256.png",
+		"src": "./src/icon_256.png",
 		"type": "image/png",
 		"sizes": "256x256",
 		"purpose": "maskable"
 	}, {
-		"src": "./icon_512.png",
+		"src": "./src/icon_512.png",
 		"type": "image/png",
 		"sizes": "512x512",
 		"purpose": "maskable"
