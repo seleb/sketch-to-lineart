@@ -44,6 +44,15 @@ h1 {
 	grid-column-start: 2;
 }
 
+@media screen and (max-width: 32rem) {
+	h1 {
+		grid-column-start: unset;
+		grid-column: span 2;
+		text-align: center;
+		font-size: 125%;
+	}
+}
+
 label {
 	text-align: right;
 	align-self: center;
