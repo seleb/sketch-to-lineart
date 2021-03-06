@@ -1,7 +1,8 @@
-import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
+import { JSXInternal } from 'preact/src/jsx';
 
-export function Modal({ children, close }: { children: ComponentChildren; close: () => void }) {
+export function Modal({ children, close, ...props }: JSXInternal.HTMLAttributes<HTMLDivElement> & { close: () => void }) {
+	// close modal on Escape
 	useEffect(() => {
 		function onKeyDown(event: KeyboardEvent) {
 			if (event.key === 'Escape') {
@@ -13,5 +14,9 @@ export function Modal({ children, close }: { children: ComponentChildren; close:
 			window.removeEventListener('keydown', onKeyDown);
 		};
 	}, [close]);
-	return <div className="modal">{children}</div>;
+	return (
+		<div role="dialog" aria-modal className="modal" {...props}>
+			{children}
+		</div>
+	);
 }
