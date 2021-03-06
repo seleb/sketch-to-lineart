@@ -253,7 +253,7 @@ function App() {
 						</button>
 					</div>
 				</figcaption>
-				<img id="source-img" src={srcInput} ref={refSourceImg} />
+				<img alt="Source image" id="source-img" src={srcInput} ref={refSourceImg} />
 			</figure>
 
 			<figure>
