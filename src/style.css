@@ -116,6 +116,12 @@ img[src=""] {
 	width: 100%;
 	flex: none;
 	display: flex;
+	flex-wrap: wrap;
+}
+
+.modal nav button {
+	flex: auto;
+	width: auto;
 }
 
 button {
