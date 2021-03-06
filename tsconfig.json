@@ -9,5 +9,6 @@
 		"jsxImportSource": "preact",
 		"lib": ["DOM", "esnext"],
 		"esModuleInterop": true,
+		"resolveJsonModule": true,
 	}
 }

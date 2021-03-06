@@ -4,6 +4,7 @@ import 'preact';
 import { render } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
+import pkg from '../../package.json';
 import { Capture } from './Capture';
 import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
@@ -192,82 +193,85 @@ function App() {
 		setFill(event.currentTarget.value);
 	}, []);
 	return (
-		<main>
-			<h1>sketch-to-lineart</h1>
-			<label htmlFor="source-file">source:</label>
-			<ul>
-				<li>
-					<input id="source-file" type="file" accept="image/*" onChange={onChange} />
-				</li>
-				<li>
-					<button type="button" onClick={beginCapture}>
-						Take photo
-					</button>
-				</li>
-			</ul>
-
-			<hr />
-
-			<label htmlFor="auto" title="Automatically set brightness/contrast">
-				auto:
-			</label>
-			<input id="auto" title="Automatically set brightness/contrast" type="checkbox" checked={auto} onChange={onToggleAuto} />
-			{!auto && (
-				<>
-					<label htmlFor="brightness">brightness:</label>
-					<input disabled={auto} id="brightness" type="range" min={0} max={5} step={0.001} value={brightness} data-value={brightness} onInput={onChangeBrightness} />
-					<label htmlFor="contrast">contrast:</label>
-					<input disabled={auto} id="contrast" type="range" min={1} max={10} step={0.001} value={contrast} data-value={contrast} onInput={onChangeContrast} />
-				</>
-			)}
-
-			<hr />
-
-			<label htmlFor="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels">
-				use&nbsp;threshold:
-			</label>
-			<input id="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels" type="checkbox" checked={useThreshold} onChange={onToggleThreshold} />
-			{useThreshold && (
-				<>
-					<label htmlFor="threshold">threshold:</label>
-					<input disabled={!useThreshold} id="threshold" type="range" min={0} max={1} step={0.001} value={threshold} data-value={threshold} onInput={onChangeThreshold} />
-				</>
-			)}
-
-			<hr />
-
-			<label htmlFor="fill">fill:</label>
-			<input id="fill" type="color" value={fill} onInput={onChangeFill} />
-
-			<hr />
-
-			<figure>
-				<figcaption>
-					original{' '}
-					<div>
-						<button disabled={!srcInput} type="button" onClick={beginCutout}>
-							cutout
+		<>
+			<main>
+				<h1>sketch-to-lineart</h1>
+				<label htmlFor="source-file">source:</label>
+				<ul>
+					<li>
+						<input id="source-file" type="file" accept="image/*" onChange={onChange} />
+					</li>
+					<li>
+						<button type="button" onClick={beginCapture}>
+							Take photo
 						</button>
-						<button disabled={!srcInput} type="button" onClick={clear}>
-							clear
-						</button>
-					</div>
-				</figcaption>
-				<img alt="Source image" id="source-img" src={srcInput} ref={refSourceImg} />
-			</figure>
+					</li>
+				</ul>
 
-			<figure>
-				<figcaption>
-					output{' '}
-					<button type="button" onClick={save}>
-						save
-					</button>
-				</figcaption>
-				<div id="output-img" className={rgbToLuma.apply(undefined, hexToRgb(fill)) > 0.5 ? 'invert' : ''} />
-			</figure>
-			{capturing && <Capture onCapture={onCapture} />}
-			{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
-		</main>
+				<hr />
+
+				<label htmlFor="auto" title="Automatically set brightness/contrast">
+					auto:
+				</label>
+				<input id="auto" title="Automatically set brightness/contrast" type="checkbox" checked={auto} onChange={onToggleAuto} />
+				{!auto && (
+					<>
+						<label htmlFor="brightness">brightness:</label>
+						<input disabled={auto} id="brightness" type="range" min={0} max={5} step={0.001} value={brightness} data-value={brightness} onInput={onChangeBrightness} />
+						<label htmlFor="contrast">contrast:</label>
+						<input disabled={auto} id="contrast" type="range" min={1} max={10} step={0.001} value={contrast} data-value={contrast} onInput={onChangeContrast} />
+					</>
+				)}
+
+				<hr />
+
+				<label htmlFor="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels">
+					use&nbsp;threshold:
+				</label>
+				<input id="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels" type="checkbox" checked={useThreshold} onChange={onToggleThreshold} />
+				{useThreshold && (
+					<>
+						<label htmlFor="threshold">threshold:</label>
+						<input disabled={!useThreshold} id="threshold" type="range" min={0} max={1} step={0.001} value={threshold} data-value={threshold} onInput={onChangeThreshold} />
+					</>
+				)}
+
+				<hr />
+
+				<label htmlFor="fill">fill:</label>
+				<input id="fill" type="color" value={fill} onInput={onChangeFill} />
+
+				<hr />
+
+				<figure>
+					<figcaption>
+						original{' '}
+						<div>
+							<button disabled={!srcInput} type="button" onClick={beginCutout}>
+								cutout
+							</button>
+							<button disabled={!srcInput} type="button" onClick={clear}>
+								clear
+							</button>
+						</div>
+					</figcaption>
+					<img alt="Source image" id="source-img" src={srcInput} ref={refSourceImg} />
+				</figure>
+
+				<figure>
+					<figcaption>
+						output{' '}
+						<button type="button" onClick={save}>
+							save
+						</button>
+					</figcaption>
+					<div id="output-img" className={rgbToLuma.apply(undefined, hexToRgb(fill)) > 0.5 ? 'invert' : ''} />
+				</figure>
+				{capturing && <Capture onCapture={onCapture} />}
+				{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
+			</main>
+			<footer>{pkg.version}</footer>
+		</>
 	);
 }
 
