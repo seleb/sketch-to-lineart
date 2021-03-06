@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "rm -rf .cache && rm -rf docs && parcel build index.html -d docs --no-source-maps --public-url ./",
+    "build": "npm run build:cleanup && npm run build:parcel && npm run build:sw",
+    "build:cleanup": "rm -rf .cache && rm -rf docs",
+    "build:parcel": "parcel build index.html -d docs --no-source-maps --public-url ./",
+    "build:sw": "workbox generateSW",
     "postversion": "npm run build"
   },
   "author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -14,7 +17,8 @@
     "@types/file-saver": "^2.0.1",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "workbox-cli": "^6.1.1"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
