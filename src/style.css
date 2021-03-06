@@ -84,6 +84,10 @@ video {
 	max-height: 100%;
 }
 
+img[src=""] {
+	display: none;
+}
+
 .modal {
 	position: fixed;
 	top: 0;
