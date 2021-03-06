@@ -1,4 +1,5 @@
 import dialogPolyfill from 'dialog-polyfill';
+import { createPortal } from 'preact/compat';
 import { useEffect, useRef } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 
@@ -11,9 +12,10 @@ export function Modal({ children, close, ...props }: JSXInternal.HTMLAttributes<
 		dialog.showModal();
 		dialog.addEventListener('close', close);
 	}, [close]);
-	return (
+	return createPortal(
 		<dialog ref={ref} aria-modal {...props}>
 			{children}
-		</dialog>
+		</dialog>,
+		document.body
 	);
 }
