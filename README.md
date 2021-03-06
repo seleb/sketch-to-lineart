@@ -2,6 +2,9 @@
 
 tool for converting sketches to transparent lineart
 
+- [itch.io](https://seansleblanc.itch.io/sketch-to-lineart)
+- [github.io](https://seleb.github.io/sketch-to-lineart/)
+
 ## How to use
 
 1. Import an image, or take a photo
