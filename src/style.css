@@ -102,6 +102,10 @@ img[src=""] {
 	padding: 1rem;
 }
 
+.modal h2 {
+	color: #fff;
+}
+
 .modal video {
 	background: #000;
 	width: 100%;

@@ -15,7 +15,8 @@ export function Capture({ onCapture }: { onCapture: (src: string) => void }) {
 		onCapture('');
 	}, []);
 	return (
-		<Modal close={cancel}>
+		<Modal close={cancel} aria-labelled-by="capture-modal-title">
+			<h2 id="capture-modal-title">Take photo</h2>
 			<Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" onUserMediaError={alert} videoConstraints={videoConstraints} forceScreenshotSourceSize />
 			<nav>
 				<button type="button" onClick={capture}>

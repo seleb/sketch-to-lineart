@@ -105,7 +105,8 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 		onCutout(srcInput);
 	}, [srcInput]);
 	return (
-		<Modal close={cancel}>
+		<Modal close={cancel} aria-labelled-by="cutout-modal-title">
+			<h2 id="capture-modal-title">Draw cutout</h2>
 			<canvas draggable={false} ref={refCanvas} src={srcInput} />
 			<nav>
 				<button onClick={save}>save</button>
