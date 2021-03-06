@@ -1,23 +1,17 @@
 import { useEffect, useRef } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 
-export function Modal({ children, close, ...props }: JSXInternal.HTMLAttributes<HTMLDivElement> & { close: () => void }) {
-	const ref = useRef<HTMLDivElement>();
-	// close modal on Escape
+export function Modal({ children, close, ...props }: JSXInternal.HTMLAttributes<HTMLDialogElement> & { close: () => void }) {
+	const ref = useRef<HTMLDialogElement>();
 	useEffect(() => {
-		function onKeyDown(event: KeyboardEvent) {
-			if (event.key === 'Escape' && (ref.current === document.activeElement || ref.current.contains(document.activeElement))) {
-				close();
-			}
-		}
-		window.addEventListener('keydown', onKeyDown);
-		return () => {
-			window.removeEventListener('keydown', onKeyDown);
-		};
+		const dialog = ref.current;
+		if (!dialog) return;
+		dialog.showModal();
+		dialog.addEventListener('close', close);
 	}, [close]);
 	return (
-		<div ref={ref} role="dialog" aria-modal className="modal" {...props}>
+		<dialog ref={ref} aria-modal {...props}>
 			{children}
-		</div>
+		</dialog>
 	);
 }
