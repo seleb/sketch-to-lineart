@@ -1,3 +1,21 @@
+# [1.6.0](https://github.com/seleb/sketch-to-lineart/compare/v1.5.0...v1.6.0) (2021-03-06)
+
+
+### Bug Fixes
+
+* add `noscript` warning ([a6a773f](https://github.com/seleb/sketch-to-lineart/commit/a6a773f54525a6b576fb60e309a38d53bcedbfac))
+* include `v` in version for clarity ([a0861a6](https://github.com/seleb/sketch-to-lineart/commit/a0861a6c4a59cf12cfe4ae64d9d770ab01f05e67))
+* include manifest at top-level ([ace2459](https://github.com/seleb/sketch-to-lineart/commit/ace24598eb0f942b7686535705ad9eeb6c447fc3))
+* more icon sizes ([68850bf](https://github.com/seleb/sketch-to-lineart/commit/68850bf959b81fdc3e692f0a456616a33237a550))
+* theme meta ([42f6667](https://github.com/seleb/sketch-to-lineart/commit/42f666780e989c4b356302d294a3f4235641bccb))
+
+
+### Features
+
+* include PWA manifest ([eda59ec](https://github.com/seleb/sketch-to-lineart/commit/eda59ec6d7f9e353ffd718a27b0f70f9ff3e54b3))
+* include version number ([250f7a9](https://github.com/seleb/sketch-to-lineart/commit/250f7a9f2a9a111f28724f869a22a8010ea4666d))
+* support offline mode via service worker ([f65b598](https://github.com/seleb/sketch-to-lineart/commit/f65b5983f19557d86b843673a0bcf9cb68505da4))
+
 # [1.5.0](https://github.com/seleb/sketch-to-lineart/compare/v1.4.1...v1.5.0) (2021-03-06)
 
 
