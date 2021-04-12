@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/seleb/sketch-to-lineart/compare/v1.6.0...v1.7.0) (2021-04-12)
+
+
+### Bug Fixes
+
+* update dependencies ([0b75805](https://github.com/seleb/sketch-to-lineart/commit/0b75805c2fcb452ba9add0d4de53f7db217fb6fb))
+
+
+### Features
+
+* support OS dark mode ([96a0344](https://github.com/seleb/sketch-to-lineart/commit/96a03448bee5f9b96f0d57aa6d661bea932cdf3a))
+
 # [1.6.0](https://github.com/seleb/sketch-to-lineart/compare/v1.5.0...v1.6.0) (2021-03-06)
 
 
