@@ -177,6 +177,7 @@ button {
 canvas {
 	background-color: #FFF;
 }
+
 .invert canvas {
 	background-color: #000;
 }
