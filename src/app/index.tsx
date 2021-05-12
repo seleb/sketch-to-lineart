@@ -8,6 +8,7 @@ import pkg from '../../package.json';
 import { Capture } from './Capture';
 import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
+import { Range } from './Range';
 import { hexToRgb, rgbToLuma, sortNumeric, useCheckbox, useRange } from './utils';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
@@ -217,9 +218,9 @@ function App() {
 				{!auto && (
 					<>
 						<label htmlFor="brightness">brightness:</label>
-						<input disabled={auto} id="brightness" type="range" min={0} max={5} step={0.001} value={brightness} data-value={brightness} onInput={onChangeBrightness} />
+						<Range id="brightness" min={0} max={5} step={0.001} value={brightness} setValue={setBrightness} />
 						<label htmlFor="contrast">contrast:</label>
-						<input disabled={auto} id="contrast" type="range" min={1} max={10} step={0.001} value={contrast} data-value={contrast} onInput={onChangeContrast} />
+						<Range id="contrast" min={1} max={10} step={0.001} value={contrast} setValue={setContrast} />
 					</>
 				)}
 
@@ -232,7 +233,7 @@ function App() {
 				{useThreshold && (
 					<>
 						<label htmlFor="threshold">threshold:</label>
-						<input disabled={!useThreshold} id="threshold" type="range" min={0} max={1} step={0.001} value={threshold} data-value={threshold} onInput={onChangeThreshold} />
+						<Range id="threshold" min={0} max={1} step={0.001} value={threshold} setValue={setThreshold} />
 					</>
 				)}
 
