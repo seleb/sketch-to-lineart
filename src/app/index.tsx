@@ -9,7 +9,7 @@ import { Capture } from './Capture';
 import { Cutout } from './Cutout';
 import Gl, { Shader, Texture } from './gl';
 import { Range } from './Range';
-import { hexToRgb, rgbToLuma, sortNumeric, useCheckbox, useRange } from './utils';
+import { hexToRgb, rgbToLuma, sortNumeric, useCheckbox } from './utils';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
 const outputCanvas = document.createElement('canvas');
@@ -186,10 +186,7 @@ function App() {
 	}, []);
 
 	const onToggleAuto = useCheckbox(setAuto);
-	const onChangeBrightness = useRange(setBrightness);
-	const onChangeContrast = useRange(setContrast);
 	const onToggleThreshold = useCheckbox(setUseThreshold);
-	const onChangeThreshold = useRange(setThreshold);
 	const onChangeFill = useCallback((event: JSXInternal.TargetedEvent<HTMLInputElement, Event>) => {
 		setFill(event.currentTarget.value);
 	}, []);
