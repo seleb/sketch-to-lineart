@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/seleb/sketch-to-lineart/compare/v1.7.0...v1.8.0) (2021-05-12)
+
+
+### Bug Fixes
+
+* error due to cleared input ([ee80068](https://github.com/seleb/sketch-to-lineart/commit/ee800688b0851fc9a921d94e26d143b490636c88))
+
+
+### Features
+
+* add number inputs to range sliders ([4b54d76](https://github.com/seleb/sketch-to-lineart/commit/4b54d76b12cbe4e15680577a394ddf7b9baaf690))
+
 # [1.7.0](https://github.com/seleb/sketch-to-lineart/compare/v1.6.0...v1.7.0) (2021-04-12)
 
 
