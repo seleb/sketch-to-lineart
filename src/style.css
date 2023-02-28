@@ -118,6 +118,8 @@ dialog {
 	bottom: 0;
 	width: 100%;
 	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 	background-color: transparent;
 	border: 0;
 	display: flex;
@@ -143,13 +145,18 @@ dialog+.backdrop {
 }
 
 dialog h2 {
-	color: var(--white);
+	position: absolute;
+	top: 0;
+	color: var(--black);
 }
 
 dialog video {
 	background-color: black;
 	width: 100%;
 	height: 100%;
+	flex: auto;
+	min-width: 0;
+	min-height: 0;
 }
 
 dialog nav {
