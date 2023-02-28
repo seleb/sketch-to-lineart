@@ -83,8 +83,21 @@ function renderOutput() {
 }
 
 function save() {
-	renderOutput();
-	outputCanvas.toBlob(saveAs);
+	try {
+		renderOutput();
+		outputCanvas.toBlob((blob) => {
+			try {
+				if (!blob) throw new Error('No canvas output found');
+				saveAs(blob);
+			} catch (err) {
+				console.error(err);
+				window.alert('Something went wrong!\n' + err);
+			}
+		});
+	} catch (err) {
+		console.error(err);
+		window.alert('Something went wrong!\n' + err);
+	}
 }
 
 function App() {
