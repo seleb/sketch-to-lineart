@@ -11,13 +11,15 @@ export function Cutout({ srcInput, onCutout }: { srcInput: string; onCutout: (sr
 		const img = new Image();
 		img.onload = () => {
 			const canvas = refCanvas.current;
-			if (!refContext.current) {
-				const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+			if (!canvas) return;
+			let ctx = refContext.current;
+			if (!ctx) {
+				ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 				refContext.current = ctx;
 			}
 			canvas.width = img.naturalWidth;
 			canvas.height = img.naturalHeight;
-			refContext.current.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+			ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
 		};
 		img.src = srcInput;
 	}, [srcInput]);
