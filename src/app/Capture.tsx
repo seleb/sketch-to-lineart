@@ -9,7 +9,9 @@ const videoConstraints = {
 export function Capture({ onCapture }: { onCapture: (src: string) => void }) {
 	const webcamRef = useRef<Webcam>();
 	const capture = useCallback(() => {
-		onCapture(webcamRef.current.getScreenshot());
+		const webcam = webcamRef.current;
+		if (!webcam) return;
+		onCapture(webcam.getScreenshot());
 	}, []);
 	const cancel = useCallback(() => {
 		onCapture('');
