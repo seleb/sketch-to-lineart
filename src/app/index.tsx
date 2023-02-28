@@ -190,6 +190,10 @@ function App() {
 	const onChangeFill = useCallback((event: JSXInternal.TargetedEvent<HTMLInputElement, Event>) => {
 		setFill(event.currentTarget.value);
 	}, []);
+	const toggleTheme = useCallback(() => {
+		const theme = document.documentElement.dataset.theme || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+		document.documentElement.dataset.theme = theme === 'dark' ? 'light' : 'dark';
+	}, []);
 	return (
 		<>
 			<main>
@@ -268,7 +272,10 @@ function App() {
 				{capturing && <Capture onCapture={onCapture} />}
 				{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
 			</main>
-			<footer>v{pkg.version}</footer>
+			<footer>
+				<button type="button" onClick={toggleTheme}>Toggle theme</button>
+				v{pkg.version}
+			</footer>
 		</>
 	);
 }
