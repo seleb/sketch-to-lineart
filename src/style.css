@@ -239,3 +239,13 @@ footer {
 		content: '🌙';
 	}
 }
+
+@media (pointer: coarse) {
+	button {
+		padding: 0.5rem;
+	}
+
+	input {
+		padding-block: 0.5rem;
+	}
+}
