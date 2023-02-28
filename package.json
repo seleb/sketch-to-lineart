@@ -13,7 +13,10 @@
   },
   "author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
   "license": "MIT",
-  "repository": "github:seleb/sketch-to-lineart",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/seleb/sketch-to-lineart.git"
+	},
   "devDependencies": {
     "@types/file-saver": "^2.0.5",
     "parcel": "^1.12.4",
