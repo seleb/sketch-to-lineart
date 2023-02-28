@@ -163,6 +163,7 @@ dialog nav {
 	width: 100%;
 	flex: none;
 	display: flex;
+	gap: 1px;
 	flex-wrap: wrap;
 }
 
