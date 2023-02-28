@@ -95,7 +95,7 @@ function App() {
 	const [srcInput, setSrcInput] = useState('');
 	const [fill, setFill] = useState('#000000');
 	const [auto, setAuto] = useState(true);
-	const refSourceImg = useRef<HTMLImageElement>();
+	const refSourceImg = useRef<HTMLImageElement>(null);
 	const onChange = useCallback<NonNullable<JSXInternal.DOMAttributes<HTMLInputElement>['onChange']>>(event => {
 		if (!event.currentTarget?.files?.[0]) return;
 		const reader = new FileReader();
