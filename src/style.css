@@ -194,15 +194,33 @@ footer {
 	align-self: flex-end;
 }
 
+#toggle-theme {
+	font-size: 0;
+	color: transparent;
+	width: auto;
+	margin-inline-end: 0.5rem;
+}
+#toggle-theme::after {
+	content: '🔆';
+	font-size: 1rem;
+	color: initial;
+}
+
 :root[data-theme="dark"] {
 	color-scheme: dark;
 	--white: #000;
 	--black: #FFF;
+}
+:root[data-theme="dark"] #toggle-theme::after {
+	content: '🌙';
 }
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme]) {
 		color-scheme: dark;
 		--white: #000;
 		--black: #FFF;
+	}
+	:root:not([data-theme]) #toggle-theme::after {
+		content: '🌙';
 	}
 }

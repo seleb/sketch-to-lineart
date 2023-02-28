@@ -273,7 +273,7 @@ function App() {
 				{cutting && <Cutout srcInput={srcInput} onCutout={onCutout} />}
 			</main>
 			<footer>
-				<button type="button" onClick={toggleTheme}>Toggle theme</button>
+				<button id="toggle-theme" type="button" onClick={toggleTheme} title="Toggle theme">Toggle theme</button>
 				v{pkg.version}
 			</footer>
 		</>
