@@ -44,7 +44,8 @@ hr {
 	width: 100%;
 	margin: 0;
 	border: 0;
-	border-top: solid 1px #BBB;
+	border-top: solid 1px var(--black);
+	opacity: 0.2;
 }
 
 h1 {
