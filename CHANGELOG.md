@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/seleb/sketch-to-lineart/compare/v1.9.0...v1.9.1) (2023-02-28)
+
+
+### Bug Fixes
+
+* itch release version ([c70ba84](https://github.com/seleb/sketch-to-lineart/commit/c70ba84590e392d084f4469c9c5712ec0c4e49f8))
+
 # [1.9.0](https://github.com/seleb/sketch-to-lineart/compare/v1.8.0...v1.9.0) (2023-02-28)
 
 
