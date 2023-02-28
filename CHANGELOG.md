@@ -1,3 +1,30 @@
+# [1.9.0](https://github.com/seleb/sketch-to-lineart/compare/v1.8.0...v1.9.0) (2023-02-28)
+
+
+### Bug Fixes
+
+* add some basic error handling ([6a9c4b6](https://github.com/seleb/sketch-to-lineart/commit/6a9c4b6994c3ee2c04a2a46ad840b2264a2e7faf))
+* always put video on black bg ([ed8c42a](https://github.com/seleb/sketch-to-lineart/commit/ed8c42ac843a9501ee62df1472e35165c43a1d9b))
+* audit dependencies ([ef1dc04](https://github.com/seleb/sketch-to-lineart/commit/ef1dc04cc0dfa3980883eb775788d9fed44cfb5b))
+* better fill style ([1b22c08](https://github.com/seleb/sketch-to-lineart/commit/1b22c085112ede94043f1988f1b62dda8d2ead42))
+* improve modal layout ([0027945](https://github.com/seleb/sketch-to-lineart/commit/002794553ba8a529a7d55d1e5057a8cbac0e4642))
+* improve theme toggle design ([61656c1](https://github.com/seleb/sketch-to-lineart/commit/61656c14a1a5e90408e6acc0382dd4399665525c))
+* more representative icon ([de1dbd3](https://github.com/seleb/sketch-to-lineart/commit/de1dbd35c8d942e02143d58931b72ba3c172d159))
+* more vertical space ([792bc1e](https://github.com/seleb/sketch-to-lineart/commit/792bc1eae374ff8aecbc70edc216d17ea6b1e331))
+* separate buttons in modal ([da05547](https://github.com/seleb/sketch-to-lineart/commit/da05547d7c13178dbb4d23319304fd396dc00ad7))
+* subtler lines ([bab55bd](https://github.com/seleb/sketch-to-lineart/commit/bab55bd3d81030769919216ac09dc25ee258ef9f))
+* type safety ([aaf93f8](https://github.com/seleb/sketch-to-lineart/commit/aaf93f8dd67a2ee1833fb0426f28b86280b07db6))
+* type safety ([74fa087](https://github.com/seleb/sketch-to-lineart/commit/74fa08728b3244832f49c472ff4e99bcd8bf43de))
+* type safety ([ba10470](https://github.com/seleb/sketch-to-lineart/commit/ba104702973092a04abb093123d284d7a1307484))
+* type safety ([65ed929](https://github.com/seleb/sketch-to-lineart/commit/65ed929363b1bebbe5f503782961a59b8b75710a))
+* update dependencies ([76a07f7](https://github.com/seleb/sketch-to-lineart/commit/76a07f7627dc8a5c0d453a902efd9f364eb92711))
+
+
+### Features
+
+* add basic theme toggle ([82f210c](https://github.com/seleb/sketch-to-lineart/commit/82f210ce3e2723afe3ed5db5d1e813ef09f42dfb))
+* bigger buttons on mobile ([71eb84b](https://github.com/seleb/sketch-to-lineart/commit/71eb84b47498301eaed6ffcecb8f70bbdcf7eeb5))
+
 # [1.8.0](https://github.com/seleb/sketch-to-lineart/compare/v1.7.0...v1.8.0) (2021-05-12)
 
 
