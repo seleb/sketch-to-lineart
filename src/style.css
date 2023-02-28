@@ -34,7 +34,7 @@ h1 {
 main {
 	display: grid;
 	grid-template-columns: 0fr 1fr;
-	grid-gap: 0.25rem 1rem;
+	grid-gap: 0.5rem 1rem;
 	width: 100%;
 	min-height: 100%;
 }
