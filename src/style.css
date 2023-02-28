@@ -146,7 +146,7 @@ dialog h2 {
 }
 
 dialog video {
-	background-color: var(--black);
+	background-color: black;
 	width: 100%;
 	height: 100%;
 }
