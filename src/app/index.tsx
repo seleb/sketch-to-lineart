@@ -7,8 +7,8 @@ import { JSXInternal } from 'preact/src/jsx';
 import pkg from '../../package.json';
 import { Capture } from './Capture';
 import { Cutout } from './Cutout';
-import Gl, { Shader, Texture } from './gl';
 import { Range } from './Range';
+import Gl, { Shader, Texture } from './gl';
 import { hexToRgb, rgbToLuma, sortNumeric, useCheckbox } from './utils';
 const inputCanvas = document.createElement('canvas');
 const inputCtx = inputCanvas.getContext('2d') as CanvasRenderingContext2D;
@@ -211,52 +211,54 @@ function App() {
 		<>
 			<main>
 				<h1>sketch-to-lineart</h1>
-				<label htmlFor="source-file">source:</label>
-				<ul>
-					<li>
-						<input id="source-file" type="file" accept="image/*" onChange={onChange} />
-					</li>
-					<li>
-						<button type="button" onClick={beginCapture}>
-							Take photo
-						</button>
-					</li>
-				</ul>
+				<div class="controls">
+					<label htmlFor="source-file">source:</label>
+					<ul>
+						<li>
+							<input id="source-file" type="file" accept="image/*" onChange={onChange} />
+						</li>
+						<li>
+							<button type="button" onClick={beginCapture}>
+								Take photo
+							</button>
+						</li>
+					</ul>
 
-				<hr />
+					<hr />
 
-				<label htmlFor="auto" title="Automatically set brightness/contrast">
-					auto:
-				</label>
-				<input id="auto" title="Automatically set brightness/contrast" type="checkbox" checked={auto} onChange={onToggleAuto} />
-				{!auto && (
-					<>
-						<label htmlFor="brightness">brightness:</label>
-						<Range id="brightness" min={0} max={5} step={0.001} value={brightness} setValue={setBrightness} />
-						<label htmlFor="contrast">contrast:</label>
-						<Range id="contrast" min={1} max={10} step={0.001} value={contrast} setValue={setContrast} />
-					</>
-				)}
+					<label htmlFor="auto" title="Automatically set brightness/contrast">
+						auto:
+					</label>
+					<input id="auto" title="Automatically set brightness/contrast" type="checkbox" checked={auto} onChange={onToggleAuto} />
+					{!auto && (
+						<>
+							<label htmlFor="brightness">brightness:</label>
+							<Range id="brightness" min={0} max={5} step={0.001} value={brightness} setValue={setBrightness} />
+							<label htmlFor="contrast">contrast:</label>
+							<Range id="contrast" min={1} max={10} step={0.001} value={contrast} setValue={setContrast} />
+						</>
+					)}
 
-				<hr />
+					<hr />
 
-				<label htmlFor="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels">
-					use&nbsp;threshold:
-				</label>
-				<input id="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels" type="checkbox" checked={useThreshold} onChange={onToggleThreshold} />
-				{useThreshold && (
-					<>
-						<label htmlFor="threshold">threshold:</label>
-						<Range id="threshold" min={0} max={1} step={0.001} value={threshold} setValue={setThreshold} />
-					</>
-				)}
+					<label htmlFor="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels">
+						use&nbsp;threshold:
+					</label>
+					<input id="use-threshold" title="Output is fully opaque/fully transparent, with no partially transparent pixels" type="checkbox" checked={useThreshold} onChange={onToggleThreshold} />
+					{useThreshold && (
+						<>
+							<label htmlFor="threshold">threshold:</label>
+							<Range id="threshold" min={0} max={1} step={0.001} value={threshold} setValue={setThreshold} />
+						</>
+					)}
 
-				<hr />
+					<hr />
 
-				<label htmlFor="fill">fill:</label>
-				<input id="fill" type="color" value={fill} style={{backgroundColor: fill}} onInput={onChangeFill} />
+					<label htmlFor="fill">fill:</label>
+					<input id="fill" type="color" value={fill} style={{backgroundColor: fill}} onInput={onChangeFill} />
 
-				<hr />
+					<hr />
+				</div>
 
 				<figure>
 					<figcaption>

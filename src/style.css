@@ -39,6 +39,18 @@ main {
 	min-height: 100%;
 }
 
+.controls {
+	position: sticky;
+	top: 0;
+	background-color: var(--white);
+	grid-column: -1 / 1;
+	display: grid;
+	grid-template-columns: 0fr 1fr;
+	grid-gap: 0.5rem 1rem;
+	width: 100%;
+	min-height: 100%;
+}
+
 hr {
 	grid-column: span 2;
 	width: 100%;
