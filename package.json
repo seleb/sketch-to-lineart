@@ -22,7 +22,7 @@
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.5",
     "typescript": "^5.2.2",
-    "workbox-cli": "^6.5.4"
+    "workbox-cli": "^7.0.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
