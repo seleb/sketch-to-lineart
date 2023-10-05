@@ -1,6 +1,6 @@
 {
   "name": "sketch-to-lineart",
-  "version": "1.9.1",
+  "version": "1.10.0",
   "description": "tool for converting sketches to transparent lineart",
   "main": "index.js",
   "scripts": {

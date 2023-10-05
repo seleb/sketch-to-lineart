@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/seleb/sketch-to-lineart/compare/v1.9.1...v1.10.0) (2023-10-05)
+
+
+### Features
+
+* sticky controls ([590f473](https://github.com/seleb/sketch-to-lineart/commit/590f47369da64f487ebda6fc11ad25f277d9599e))
+
 ## [1.9.1](https://github.com/seleb/sketch-to-lineart/compare/v1.9.0...v1.9.1) (2023-02-28)
 
 
